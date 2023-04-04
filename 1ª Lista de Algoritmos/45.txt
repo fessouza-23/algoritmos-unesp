@@ -1,0 +1,6 @@
+Sistema linear
+1. x + y = 11
+2. x = 10 + y
+3. (10 + y) + y =  11
+4. 2y + 10 = 11
+5. y = 0.5 (preço da rolha)

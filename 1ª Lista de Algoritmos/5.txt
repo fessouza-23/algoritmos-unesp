@@ -1,0 +1,7 @@
+1. Pessoa leva o carneiro para a outra margem
+2. Pessoa retorna sozinha para a margem inicial
+3. Pessoa pega o cesto de alface e leva para a outra margem
+4. Pessoa retorna com o carneiro para a margem inicial
+5. Pessoa pega o lobo e leva para a outra margem
+6. Pessoa retorna sozinha para a margem inicial
+7. Pessoa leva o carneiro para a outra margem

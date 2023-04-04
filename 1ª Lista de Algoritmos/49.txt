@@ -1,0 +1,8 @@
+dados:
+ - 3 ladrões
+ - 3 chapéus pretos
+ - 2 chapéus brancos
+1. SE o último ladrão pode ver os dois chapéus a sua frente, LOGO se tem por conclusão:
+   i. SE o último ladrão ver dois chapéus brancos à sua frente, LOGO poderia concluir que seu chapéu é preto, devido a quantidade definida de ambas as cores.
+   i. SE o último ladrão ver dois chapéus pretos OU um branco e outro preto, ainda não poderia definir qual a cor de seu chapeu
+2. LOGO, tomando por referência o último ladrão, o ladrão que está na primeira fila pode concluir que seu chapéu é preto, uma vez que o último ladrão não pôde definir a cor de seu chapéu

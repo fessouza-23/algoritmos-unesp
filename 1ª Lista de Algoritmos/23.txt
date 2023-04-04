@@ -1,0 +1,8 @@
+1. No começo todos os filósofos estão pensando
+2. Enquanto houver filósofos pensando ou comendo:
+   a. Para cada filósofo:
+      i. Se o filósofo não estiver comendo, verifique se os garfos nas suas duas extremidades (à esquerda e à direita) estão disponíveis.
+      ii. Se sim, o filósofo pode pegar os garfos e começar a comer.
+      iii. Caso contrário, o filósofo continua pensando.
+   b. Para cada filósofo comendo:
+      i. Verifique se o filósofo já comeu o suficiente, em caso afirmativo devolva os garfos e comece a pensar.

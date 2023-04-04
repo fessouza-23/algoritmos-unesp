@@ -1,0 +1,19 @@
+1. Localize um banco ou estabelecimento que contenha um caixa eletrônico
+2. Dirija-se em frente ao caixa eletrônico
+3. Pegue a carteira
+4. Retire o cartão do banco da carteira
+5. Verifique que o caixa eletrônico está na tela inicial (evite de estar na conta de um terceiro)
+6. Não deixe a carteira desacompanhada enquanto estiver usando o caixa eletrônico.
+7. Insira o cartão bancário no caixa eletrônico
+8. Verifique que o caixa eletrônico reconheceu o cartão
+9. Digite a senha no teclado númerico do caixa eletrônico
+10. Selecione a opção de retirar valor
+11. Digite o valor que deseja retirar
+12. Realize a verificação necessária para sacar o valor desejado
+13. Retire o dinheiro dispensado pelo caixa eletrônico
+14. Certifique-se que o valor retirado corresponde ao informado no caixa eletrônico no processo de n.10
+15. Remova o cartão do caixa
+16. Pegue a carteira
+18. Coloque o cartão novamente na carteira
+19. Guarde o dinheiro retirado na carteira
+20. Guarde a carteira

@@ -1,0 +1,6 @@
+1. Cliente entra na barbearia
+2. SE não houver clientes, ENTÃO cliente que entrou é o nº0 para o atendimento E cliente nº0 acorda barbeiro
+4. SE cliente entrar e não houver clientes de espera, então sua posição na fila de espera é nº1
+3. SE cliente entrar e houver mais clientes e cadeiras de espera disponível, então sua posição é o número de clientes de espera + 1
+4. SE cliente entrar e houver mais clientes e não houver cadeiras de espera, então não há posição de espera e cliente sai do estabelecimento
+5. Ao cliente acabar de ser atendido, o próximo cliente é o primeiro que chegou após o último que saiu

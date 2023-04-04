@@ -1,0 +1,6 @@
+1. Inicialize o robô aspirador na posição (0,0)
+2. Enquanto houver quadrados sujos:
+3. Limpe o quadrado onde o robô está
+4. Verifique todos os quadrados adjacentes ao robô (acima, abaixo, esquerda, direita)
+5. Se houver algum quadrado sujo adjacente, mova-se para esse quadrado e volte para a etapa 2
+6. Se não houver quadrados sujos adjacentes, volte para o quadrado anterior (o que o robô estava antes)

@@ -1,0 +1,1 @@
+1. SE o número de bactérias dobra a cada minuto, LOGO aos 56 minutos teria o número que corresponde a metade da quantidade de bactérias que enchem totalmente a casca

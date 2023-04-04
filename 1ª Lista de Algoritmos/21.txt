@@ -1,0 +1,9 @@
+Posição de cada rainha:
+1. e1
+2. c2
+3. a3
+4. g4
+5. b5
+6. h6
+7. f7
+8. d8

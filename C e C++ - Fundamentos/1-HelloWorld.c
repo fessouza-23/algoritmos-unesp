@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
-//Função principal do programa
-void main(){
+//Funï¿½ï¿½o principal do programa
+int main(){
+
+    setlocale(LC_ALL, "Portuguese_Brazil");
 
     //Imprime na tela
-    printf("Oi mundo!");
+    printf("OlÃ¡ mundo!");
 
-    //Pausa o programa após executar
+    //Pausa o programa apï¿½s executar
     system("pause");
-
+    return 0;
 }
 

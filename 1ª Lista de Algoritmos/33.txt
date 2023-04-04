@@ -1,0 +1,7 @@
+Supondo um valor inicial ao produto de 100 reais, tem-se que:
+1. Na liquidação, com 20% de desconto, passa-se a ter um valor de 80 reais
+2. Para ter-se 100 novamente no valor do produto, calcula-se: 
+	80 - 100%
+	100 - x%
+	x = 125%
+Ou seja, o valor, em porcentagem do aumento, corresponde a 25%	

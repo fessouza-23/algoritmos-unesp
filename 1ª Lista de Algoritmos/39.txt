@@ -1,0 +1,12 @@
+Carros: Palio, Gol, Vectra
+Cores: cinza, verde, azul
+1. Arthur possui carro cinza
+2. Cezar possui carro Vectra
+3. SE Bernardo não possui carro verde e não possui Palio
+4. ENTÃO Carro de Bernardo é o Gol azul
+5. Arthur possui Palio cinza
+6. Cezar possui Vectra verde
+7. RESULTADO
+- Gol > azul
+- Vectra > verde
+- Palio > cinza

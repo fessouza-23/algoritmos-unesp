@@ -1,0 +1,5 @@
+1. Definir dia de início (ex: segunda-feira)
+2. Avaliar se a afirmação da Raposa é verdadeira ou falsa no decorrer dos dias
+   i. SE a afirmação é verdaderia, ENTÃO Raposa mentiu 
+   i. SENÃO Lobo Mau mentiu
+3. SE apenas uma das afirmações for verdadeira, então esse é o dia da semana correto

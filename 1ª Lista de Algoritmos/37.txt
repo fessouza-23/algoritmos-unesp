@@ -1,0 +1,19 @@
+Maria <- verdadeiro
+Julio <- falso
+Luis <- falso
+
+// Se Maria é verdadeira, então Julio está enganado
+Se Maria for verdadeiro, então
+    Julio <- falso
+Senão
+    Julio <- verdadeiro
+
+// Se Julio está enganado, então Luis está enganado também
+Se Julio for falso, então
+    Luis <- verdadeiro
+
+// Se Luis está enganado, então o filme "Fogo Contra Fogo" não está em cartaz
+Se Luis for falso, então 
+    "O filme 'Fogo Contra Fogo' não está em cartaz"
+Senão 
+    "José não irá ao cinema"

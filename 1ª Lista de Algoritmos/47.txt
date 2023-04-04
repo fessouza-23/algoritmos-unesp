@@ -1,0 +1,3 @@
+1. SE o relógio está parado em um número sempre, LOGO este mesmo relógio acerta o horário 2x ao dia
+2. SE o segundo relógio está atrasado 1h, o mesmo mostra o horário certo apenas a cada 12 dias -> tempo para que o atraso chegue a 12h e mostre o horário correto
+3. Portanto, o relógio parado acertará mais o horário

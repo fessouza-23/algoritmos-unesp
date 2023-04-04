@@ -1,0 +1,6 @@
+Sequência de Fibonacci, o próximo número é a soma de seus dois anteriores:
+1 + 1 = 2
+1 + 2 = 3
+2 + 3 = 5
+3 + 5 = 8
+Sequência completa: 1, 1, 2, 3, 5, 8

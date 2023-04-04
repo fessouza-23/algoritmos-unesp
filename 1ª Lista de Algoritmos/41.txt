@@ -1,0 +1,6 @@
+1. (1 * tijolo) = (1/2 * tijolo) + 1kg
+2. logo (1/2 * tijolo) = 1kg
+3. (1 * tijolo) + (1/2 * tijolo) = x
+4. SE 1/2 tijolo = 1kg, ENTÃO 1 tijolo = 2kg
+5. em 3., tem-se então que 2kg + 1kg = x
+6. logo, x = 3kg

@@ -1,0 +1,13 @@
+1. Move C de 1 para 3
+2. Move B de 1 para 3
+3. Move E de 2 para 3
+4. Move D de 2 para 3
+5. Move A de 1 para 2
+6. Move D de 3 para 1
+7. Move E de 3 para 1
+8. Move B de 3 para 2
+9. Move C de 3 para 2
+10. Move G de 3 para 2
+11. Move F de 3 para 2
+12. Move E de 1 para 3
+13. Move D de 1 para 3

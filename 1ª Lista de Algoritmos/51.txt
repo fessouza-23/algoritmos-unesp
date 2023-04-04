@@ -1,0 +1,18 @@
+1. As mulheres compraram um livro, um vestido, uma bolsa, uma gravata, um chapéu e um candeeiro
+2. Sra. Adams não entrou no elevador no andar térreo, então ela não poderia ter saído no segundo andar
+3. Sra. Catt e a mulher que comprou a gravata saíram no segundo andar
+4. As outras mulheres, exceto a Sra. Fisk, saíram do elevador no terceiro andar ou acima
+5. A mulher que comprou o candeeiro saiu no quinto andar, deixando a Sra. Fisk saltar sozinha no sexto andar
+6. A Sra. Ennis foi a sexta a sair do elevador
+7. Sra. Adams não comprou o livro (vendido no térreo), nem o vestido (terceiro andar), nem a bolsa (segundo andar), nem a gravata (presente para o marido da Sra. Baker), nem o chapéu (não sobrou opção).
+8. Sra. Baker ganhou a bolsa e não comprou nem o livro, nem o vestido, nem a gravata (já mencionada como presente) e nem o candeeiro (não sobrou opção).
+9. Sra. Catt comprou a gravata e não comprou nem o livro (vendido no térreo), nem o vestido (terceiro andar), nem a bolsa (já mencionada como presente), nem o chapéu (não sobrou opção) e nem o candeeiro (já comprado pela outra mulher que saiu no segundo andar).
+10. Sra. Dodge não comprou o livro (vendido no térreo), nem a gravata (já comprada pela Sra. Catt), nem o chapéu (terceiro andar), nem a bolsa (segundo andar) e nem o candeeiro (já comprado pela outra mulher que saiu no segundo andar).
+11. Sra. Ennis comprou o chapéu e não comprou nem o livro (vendido no térreo), nem o vestido (terceiro andar), nem a bolsa (segundo andar), nem a gravata (já comprada pela Sra. Catt) e nem o candeeiro (já comprado pela outra mulher que saiu no segundo andar).
+12. Sra. Fisk não comprou o livro (vendido no térreo), nem o vestido (terceiro andar), nem a bolsa (segundo andar), nem a gravata (presente para o marido da Sra. Baker), nem o chapéu (já comprado pela Sra. Ennis). Ela comprou o candeeiro.
+13. Sra. Adams: Não sabemos o que ela comprou
+14. Sra. Baker: Ganhou uma bolsa
+15. Sra. Catt: Comprou uma gravata
+16. Sra. Dodge: Não sabemos o que ela comprou
+17. Sra. Ennis: Comprou um chapéu
+18. Sra. Fisk: Comprou um candeeiro

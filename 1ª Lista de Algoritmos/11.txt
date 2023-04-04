@@ -1,0 +1,11 @@
+1. Encontre a casa (CASAij) que corresponde a linha 1 e a coluna do meio da matriz
+2. Defina o local encontrado como a casa 1 (nº1)
+3. Suba uma unidade para cima
+   i. SE não houver linha, comece pela última linha da matriz
+4. Ande para a coluna da direita
+   i. SE não houver coluna, comece pela coluna da extrema esquerda
+5. SE a casa encontrada a partir dos comandos anteriores já estiver preenchida, volte para a casa de onde começou
+6. Desça uma unidade para a linha de baixo
+   i. SE não houve linha, comece pela primeira linha da matriz
+7. Após localizar a casa correta, preencha com o sucessor do número já colocado (ex: se for 1, o número a preencher a casa será 2)
+8. Repita os processos de 3 até 7 para completar toda a matriz

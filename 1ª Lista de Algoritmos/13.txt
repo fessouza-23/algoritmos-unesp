@@ -1,0 +1,10 @@
+Obs.: Não entendi a questão para fazer a partir de discos, então fiz por baldes para não deixar sem fazer.
+
+1. Encher o balde de 3 litros completamente
+2. Despejar todo o conteúdo do balde de 3 litros no balde de 4 litros
+3. Encher novamente o balde de 3 litros completamente.
+4. Despejar água do balde de 3 litros para o balde de 4 litros até que o balde de 4 litros fique cheio
+5. Esvaziar o balde de 4 litros
+6. Despejar o litro de água do balde de 3 litros no balde de 4 litros vazio
+7. Encher o balde de 3 litros completamente
+8. Despejar todo o conteúdo do balde de 3 litros no balde de 4 litros

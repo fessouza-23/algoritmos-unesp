@@ -1,0 +1,7 @@
+1. Como o Sr. Robinson vive em Detroit, ele não pode ser o guarda-freio nem o vizinho do guarda-freio.
+2. Como o Sr. Jones ganha $20.000 dólares por ano, ele não pode ser o guarda-freio, já que o vizinho do guarda-freio ganha três vezes mais.
+3. Como o Sr. Smith derrotou o foguista jogando sinuca, ele não pode ser o foguista.
+4. Como o Sr. Smith derrotou o foguista jogando sinuca, e o Sr. Robinson foi derrotado por ele, o Sr. Robinson não pode ser o Sr. Smith.
+5. Como o Sr. Smith derrotou o foguista jogando sinuca, e apenas uma pessoa pode ser o foguista, o Sr. Smith não pode ser o foguista.
+6. Como o Sr. Smith não pode ser nem o guarda-freio nem o foguista, ele deve ser o maquinista.
+7. Como o vizinho do guarda-freio ganha três vezes mais que o guarda-freio, e o Sr. Jones ganha $20.000 dólares por ano, o Sr. Jones não pode ser o vizinho do guarda-freio. Logo, o vizinho do guarda-freio deve ser

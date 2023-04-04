@@ -1,0 +1,4 @@
+1. Bloco P na posição 2 salta dois blocos brancos para a posição vazia de número 5, custo = 2
+2. Bloco B na posição 4 salta bloco B na posição 3 para a posição 2, custo = 1
+3. Bloco P na posição 1 salta dois blocos brancos para a posição vazia de número 4, custo = 2
+Custo total = 5
