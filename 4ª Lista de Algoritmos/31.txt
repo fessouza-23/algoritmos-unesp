@@ -1,0 +1,44 @@
+31.
+#include <stdio.h>
+int main() {
+  int cidade, veiculos, acidentes;
+  float indice, maiorIndice = 0, menorIndice = 999999;
+  int totalVeiculos = 0, numCidadesMenos2000 = 0, totalAcidentesMenos2000 = 0;
+  int cidadeMaiorIndice = 0, cidadeMenorIndice = 0;
+
+  for (cidade = 1; cidade <= 5; cidade++) {
+    printf("Cidade %d\n", cidade);
+    printf("Número de veículos de passeio: ");
+    scanf("%d", &veiculos);
+    printf("Número de acidentes com vítimas: ");
+    scanf("%d", &acidentes);
+
+    indice = (float) acidentes / veiculos;
+
+    if (indice > maiorIndice) {
+      maiorIndice = indice;
+      cidadeMaiorIndice = cidade;
+    }
+    if (indice < menorIndice) {
+      menorIndice = indice;
+      cidadeMenorIndice = cidade;
+    }
+
+    totalVeiculos += veiculos;
+
+    if (veiculos < 2000) {
+      numCidadesMenos2000++;
+      totalAcidentesMenos2000 += acidentes;
+    }
+  }
+
+  float mediaVeiculos = (float) totalVeiculos / 5;
+  printf("Média de veículos de passeio: %.2f\n", mediaVeiculos);
+
+  float mediaAcidentesMenos2000 = (float) totalAcidentesMenos2000 / numCidadesMenos2000;
+  printf("Média de acidentes de trânsito nas cidades com menos de 2000 veículos de passeio: %.2f\n", mediaAcidentesMenos2000);
+
+  printf("Cidade com o maior índice de acidentes: %d (%.2f)\n", cidadeMaiorIndice, maiorIndice);
+  printf("Cidade com o menor índice de acidentes: %d (%.2f)\n", cidadeMenorIndice, menorIndice);
+  return 0;
+}

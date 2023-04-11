@@ -1,0 +1,27 @@
+19.
+#include <stdio.h>
+int main() {
+    int cod;
+    scanf("%d", &cod);
+    switch(cod){
+        case 1:
+            printf("Cargo: Escrituário\nAumento de: 60%%");
+            break;
+        case 2:
+            printf("Cargo: Secretário\nAumento de: 40%%");
+            break;
+        case 3:
+            printf("Cargo: Caixa\nAumento de: 25%%");
+            break;
+        case 4:
+            printf("Cargo: Gerente\nAumento de: 5%%");
+            break;
+        case 5:
+            printf("Cargo: Diretor\nAumento de: 0%%");
+            break;
+        default:
+            printf("Código inválido");
+            break;
+    }
+    return 0;
+}

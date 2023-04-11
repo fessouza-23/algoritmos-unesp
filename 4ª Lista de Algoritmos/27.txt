@@ -1,0 +1,26 @@
+27.
+#include <stdio.h>
+int main() {
+    int cod, a, b;
+    printf("Digite o que deseja realizar.\nOpções:\n1.Soma\n2.Produto\n3.Raiz quadrada\n4.Sair\n");
+    scanf("%d", &cod);
+    if(cod == 1){
+        printf("\nDigite os dois valores para soma: ");
+        scanf("%d %d", &a, &b);
+        printf("\nSoma de %d + %d = %d", a, b, a + b);
+    } else if(cod == 2){
+        printf("\nDigite os dois valores para multiplicar: ");
+        scanf("%d %d", &a, &b);
+        printf("\nProduto de %d * %d = %d", a, b, a * b);
+    } else if(cod == 3){
+        printf("\nDigite o valor para extrair a raiz quadrada: ");
+        scanf("%d", &a);
+        b = sqrt(a);
+        printf("\nRaiz quadrada de %d é %d", a, b);
+    } else if(cod == 4){
+        printf("\nAdeus!");
+    } else{
+        printf("\nCódigo desconhecido.");
+    }
+    return 0;
+}

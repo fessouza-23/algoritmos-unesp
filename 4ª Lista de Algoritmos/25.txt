@@ -1,0 +1,27 @@
+25.
+#include <stdio.h>
+int main() {
+    float preco;
+    int cod;
+    scanf("%d %f", &cod, &preco);
+    if(cod == 1){
+        printf("Valor: R$%.2f\nProcedência: Sul", preco);
+    } else if(cod == 2){
+        printf("Valor: R$%.2f\nProcedência: Norte", preco);
+    } else if(cod == 3){
+        printf("Valor: R$%.2f\nProcedência: Leste", preco);
+    } else if(cod == 4){
+        printf("Valor: R$%.2f\nProcedência: Oeste", preco);
+    } else if(cod == 5 || cod == 6){
+        printf("Valor: R$%.2f\nProcedência: Nordeste", preco);
+    } else if(cod == 7 || cod == 8 || cod == 9){
+        printf("Valor: R$%.2f\nProcedência: Sudeste", preco);
+    } else if(cod >= 10 && cod <= 20){
+        printf("Valor: R$%.2f\nProcedência: Centro-Oeste", preco);
+    } else if(cod >= 21 && cod <= 30){
+        printf("Valor: R$%.2f\nProcedência: Nordeste", preco);
+    } else {
+        printf("Valor: R$%.2f\nProcedência: Importado", preco);
+    }
+    return 0;
+}

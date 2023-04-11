@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+  int horas_extras, horas_falta;
+  float h, premio;
+  printf("Digite o número de horas extras: ");
+  scanf("%d", &horas_extras);
+  printf("Digite o número de horas falta: ");
+  scanf("%d", &horas_falta);
+  h = (horas_extras - (2.0/3.0)*horas_falta)/60.0;
+
+  if (h > 40) {
+    premio = 800;
+  } else if (h > 30) {
+    premio = 600;
+  } else if (h > 20) {
+    premio = 550;
+  } else if (h > 10) {
+    premio = 400;
+  } else {
+    premio = 350;
+  }
+  printf("Valor do prêmio: %.2f\n", premio);
+  return 0;
+}

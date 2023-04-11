@@ -1,0 +1,12 @@
+23.
+#include <stdio.h>
+int main() {
+    float salario;
+    scanf("%f", &salario);
+    if(salario > 840.0){
+        printf("Não possui direito ao aumento.");
+    } else{
+        printf("Aumento salarial: %.2f", salario * 1.13);
+    }
+    return 0;
+}

@@ -1,0 +1,28 @@
+15.
+#include <stdio.h>
+
+int main() {
+    int cod;
+    float valor;
+    printf("Digite o código e o valor do produto: ");
+    scanf("%d %f", &cod, &valor);
+    
+    switch(cod){
+    case 1:
+        printf("À vista em dinheiro ou cheque. Valor com 10%% de desconto: R$ %.2f", valor * 0.90);
+            break;
+    case 2:
+        printf("À vista  vista no cartão de crédito. Valor com 5%% de desconto: R$ %.2f", valor * 0.95);
+            break;
+    case 3:
+        printf("Em 2 vezes. Preço normal de etiqueta sem juros. Valor normal: R$ %.2f", valor);
+            break;
+    case 4:
+        printf("Em 3 vezes. Valor com 10%% de juros: R$ %.2f", valor * 1.10);
+            break;
+    default:
+        printf("Valor inválido");
+        break;
+    }
+    return 0;
+}

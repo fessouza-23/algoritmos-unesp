@@ -1,0 +1,15 @@
+17.
+#include <stdio.h>
+int main() {
+    float  a, b, c, d, u, v, x, y;
+    scanf("%f %f %f %f %f %f", &a, &b, &c, &d, &u, &v);
+    float denominator = a * d - b * c;
+    if (denominator == 0) {
+        printf("Não é possível calcular x e y.");
+    } else {
+        x = (d / denominator) * u - (b / denominator) * v;
+        y = (-c / denominator) * u + (a / denominator) * v;
+        printf("x: %.1f\ny: %.1f", x, y);
+    } 
+    return 0;
+}

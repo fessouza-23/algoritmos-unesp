@@ -1,0 +1,10 @@
+7. 
+#include <stdio.h>
+int main() {
+    int peso;
+    printf("Digite o peso: ");
+    scanf("%d", &peso);
+    printf("\nPeso em gramas: %d", peso * 1000);
+    printf("\nPeso caso aumente em 5%: %d gramas", peso * 1050);
+    return 0;
+}

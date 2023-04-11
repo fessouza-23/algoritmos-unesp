@@ -1,0 +1,12 @@
+9.
+#include <stdio.h>
+int main() {
+    int valor;
+    scanf("%d", &valor);
+    
+    if(valor % 2){
+        printf("%d é ímpar.", valor);
+    } else {
+        printf("%d é par.", valor);
+    }
+}

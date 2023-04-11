@@ -1,0 +1,29 @@
+21.
+#include <stdio.h>
+int main() {
+    float notaLab, notaAva, notaExa, media;
+    
+    printf("Nota de Laboratório: ");
+    scanf("%f", &notaLab);
+    
+    printf("Nota de Avaliação semestral: ");
+    scanf("%f", &notaAva);
+    
+    printf("Nota de Exame final: ");
+    scanf("%f", &notaExa);
+    
+    media = ((notaLab * 3) + (notaAva * 2) + (notaExa * 5)) / 10;
+    
+    if(media >= 8.5 && media <= 10.0){
+        printf("Média final: %.1f\nConceito: A", media);
+    } else if(media >= 7.0 && media < 8.5){
+        printf("Média final: %.1f\nConceito: B", media);
+    } else if(media >= 6.0 && media < 7.0){
+        printf("Média final: %.1f\nConceito: C", media);
+    } else if(media >= 5.0 && media < 6.0){
+        printf("Média final: %.1f\nConceito: D", media);
+    } else {
+        printf("Média final: %.1f\nConceito: E", media);
+    }
+    return 0;
+}
