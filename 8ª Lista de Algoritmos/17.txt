@@ -1,0 +1,17 @@
+Inicialmente, o vetor vet é definido com os valores: 'T', 'R', 'X', 'S', ' ', 'E', 'O', 'B', 'A', '!', '\0'.
+
+O valor armazenado na posição 5 do vetor, que é o caractere 'E', é armazenado na variável aux.
+
+O valor armazenado na posição 8 do vetor, que é o caractere 'A', é movido para a posição 5 do vetor.
+
+O valor armazenado na variável aux (que contém o caractere 'E') é movido para a posição 8 do vetor.
+
+Um loop é executado 4 vezes, onde os valores do vetor são invertidos em relação à posição central.
+
+Na primeira iteração, o caractere ' ' (espaço) é movido para a posição 0, e o caractere 'A' é movido para a posição 7.
+Na segunda iteração, o caractere 'X' é movido para a posição 1, e o caractere 'R' é movido para a posição 6.
+Na terceira iteração, o caractere 'S' é movido para a posição 2, e o caractere 'O' é movido para a posição 5.
+Na quarta iteração, o caractere 'T' é movido para a posição 3, e o caractere 'B' é movido para a posição 4.
+Após o loop, o valor armazenado na posição 1 do vetor, que é o caractere 'R', é movido para a posição 5 do vetor.
+
+Por fim, um loop imprime os caracteres do vetor na ordem em que estão armazenados, resultando na sequência "BOA SORTE!".
