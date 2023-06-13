@@ -1,0 +1,8 @@
+a) 32 elementos, 128 bytes
+b) 50 elementos, 200 bytes
+c) 10 elementos, 80 bytes
+d) 82 elementos, 82 bytes
+e) 24 elementos, 384 bytes
+f) 36 elementos, 288 bytes
+g) 100 elementos, 400 bytes
+h) 4 elementos, 16 bytes
