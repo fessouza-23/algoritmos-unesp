@@ -1,0 +1,11 @@
+O programa está preenchendo a matriz mat de tamanho 3x3 com os números de 1 a 9 seguindo uma determinada lógica. O preenchimento segue um padrão em espiral, iniciando no centro da matriz e movendo-se para cima, para a direita, para baixo e para a esquerda.
+
+A matriz é inicializada com zeros (mat[i][j] = 0), e o valor inteiro é incrementado de 1 até 9. A variável x representa a linha atual, e y representa a coluna atual.
+
+Após o preenchimento da matriz, o programa imprime a matriz resultante com o uso de um loop.
+
+Portanto, a saída impressa será:
+
+ 1  6  7 
+ 5  8  9 
+ 4  3  2 

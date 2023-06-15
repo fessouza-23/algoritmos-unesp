@@ -3,5 +3,7 @@
         "random": "c",
         "stdio.h": "c",
         "29.C": "cpp"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

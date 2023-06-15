@@ -1,0 +1,4 @@
+m1: Número de elementos = 45, Dimensão = 3x15 (duas dimensões), Quantidade de memória ocupada = 180 bytes.
+m2: Número de elementos = 48, Dimensão = 3x16 (duas dimensões), Quantidade de memória ocupada = 192 bytes.
+m3: Número de elementos = 120, Dimensão = 3x4x10 (três dimensões), Quantidade de memória ocupada = 120 bytes.
+m4: Número de elementos = 625, Dimensão = 5x5x5x5 (quatro dimensões), Quantidade de memória ocupada = 5000 bytes.

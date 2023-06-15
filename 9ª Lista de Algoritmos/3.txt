@@ -1,0 +1,7 @@
+Temos um conjunto de loops aninhados que percorrem as matrizes e realizam a operação de adição dos elementos correspondentes.
+Portanto, após a execução do código, serão impressos os valores resultantes da soma dos elementos correspondentes das matrizes A e C. A saída será:
+
+ 4  8  6
+ 9 10 14
+
+ Cada linha representa uma iteração dos loops "i" e "j", onde os elementos das matrizes A e C são somados e impressos.

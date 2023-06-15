@@ -1,0 +1,20 @@
+a) 30 elementos
+b) 442
+c) 322
+d) ocorrerá um comportamento indefinido no programa, já que não há a linha referenciada, ou seja, não encontrará um resultado exato e correto
+e)  for (int i = 0; i < 5; i++) {
+        soma += matriz[i][3];
+    }
+    printf("A soma dos elementos da quarta coluna: %d\n", soma);
+f)  int soma = 0;
+    int lin = 2;
+    for (int j = 0; j < 6; j++) {
+        soma += matriz[lin][j];
+    }
+    printf("A soma dos elementos da terceira linha: %d\n", soma);
+
+
+
+
+
+
