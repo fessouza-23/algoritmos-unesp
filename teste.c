@@ -1,24 +1,35 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
-    float v[12][12], soma, media;
     int n, i, j;
-    char c;
-
-    scanf("%d", &n);
-    scanf("%c", &c);
-    if (c == 'S') {
-        for(i = 0; i < 12; i++) {
-            for(j = 0; j < 12; j++) {
-                soma += v[i][j];
+    
+    do {
+        scanf("%d", &n);
+        
+        if (n == 0)
+            break;
+        
+        int v[n][n];
+        v[0][0] = 1;
+        
+        for (i = 0; i < n; i++) {
+            if (i > 0){
+                v[i][0] = v[i-1][1];
+            }
+                
+            for (j = 1; j < n; j++) {
+                v[i][j] = v[i][j-1] * 2;
             }
         }
-        printf("%.2f\n");
-    } else {
-        media = soma / 12.0;
-        printf("%.2f\n", media);
-    }
 
+        for (i = 0; i < n; i++) {
+            for(j = 0; j < n; j++)
+                printf("%3d", v[i][j]);
+            printf("\n");
+        }
+
+        printf("\n");
+    } while (1);
+    
     return 0;
 }

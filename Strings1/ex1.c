@@ -1,51 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
+#include <string.h>
 
-int quantVog(char str[]){
-    int cont = 0, i;
+void quantConsVogs(char str[], int *cons, int *vogs) {
+    int i;
+    char vogais[] = "AEIOUaeiou";
 
-    for(i = 0; str[i] != '\0'; i++){
-        str[i] = tolower(str[i]);
-    }
-
-    for(i = 0; str[i] != '\0'; i++){
-        if(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u'){
-            cont++;
+    for (i = 0; i < strlen(str); i++) {
+        if (isalpha(str[i])) { // Verifica se o caractere é uma letra
+            if (strchr(vogais, str[i]) != NULL) {
+                (*vogs)++;
+            } else {
+                (*cons)++;
+            }
         }
     }
-
-    return cont;
 }
 
-int quantCons(char str[]){
-    int cont = 0, i;
-
-    for(i = 0; str[i]; i++){
-        str[i] = tolower(str[i]);
-    }
-
-    for(i = 0; str[i] != '\0'; i++){
-        if(str[i] != 'a' && str[i] != 'e' && str[i] != 'i' && str[i] != 'o' && str[i] != 'u' && str[i] >= 'b' && str[i] <= 'z'){
-            cont++;
-        }
-    }
-
-    return cont;
+int reprocessamento() {
+    int i;
+    do {
+        printf("\nDeseja utilizar o programa novamente?\n\t1 - Sim\n\t0 - Nao\n");
+        scanf("%d", &i);
+        if (i != 1 && i != 0)
+            printf("Valor invalido! Por favor, digite novamente!\n");
+    } while (i != 1 && i != 0);
+    return i;
 }
 
-int main(){
-    char str[41];
+int main() {
+    char str[21];
+    int vogs, cons;
 
     do {
-        printf("Digite a frase: ");
-        gets(str);
-    } while(strlen(str) > 40);
-    
-    printf("Frase: %s\n", str);
-    printf("Quantida de vogais: %d\n", quantVog(str));
-    printf("Quantida de consoantes: %d\n", quantCons(str));
+        vogs = cons = 0;
+
+        printf("Digite uma frase: ");
+        fgets(str, sizeof(str), stdin);
+        str[strcspn(str, "\n")] = '\0'; // Removendo a quebra de linha
+
+        quantConsVogs(str, &cons, &vogs);
+
+        printf("Frase: %s\n", str);
+        printf("Quantidade de vogais: %d\n", vogs);
+        printf("Quantidade de consoantes: %d\n", cons);
+    } while (reprocessamento());
 
     return 0;
 }
