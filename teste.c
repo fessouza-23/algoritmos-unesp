@@ -1,33 +1,36 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#define max 5
 
-#define MAX_POKEMONS 151
-#define MAX_NAME_LENGTH 1001
+void ordenar(char nomes[max][20]) {
+    char aux[20];
+    int i, j;
 
-int main() {
-    int count, i, totalPokemons = MAX_POKEMONS;
-    char pokemon[MAX_POKEMONS][MAX_NAME_LENGTH];
-    int captured[MAX_POKEMONS] = {0}; // Vetor de flags para marcar Pokémon já capturados
-
-    scanf("%d", &count);
-    getchar();
-
-    for (i = 0; i < count; i++) {
-        fgets(pokemon[i], MAX_NAME_LENGTH, stdin);
-        pokemon[i][strlen(pokemon[i]) - 1] = '\0';
-
-        int index = atoi(pokemon[i]) - 1; // Índice do Pokémon atual
-
-        if (index >= 0 && index < MAX_POKEMONS) {
-            if (captured[index] == 0) {
-                captured[index] = 1; // Marcar o Pokémon como capturado
-                totalPokemons--;
+    for (i = 0; i < max; i++) {
+        for (j = i+1; j < max; j++) {
+            if (stricmp(nomes[i], nomes[j]) > 0) {
+                strcpy(aux, nomes[i]);
+                strcpy(nomes[i], nomes[j]);
+                strcpy(nomes[j], aux);
             }
         }
     }
+}
 
-    printf("Falta(m) %d pomekon(s).\n", totalPokemons);
+int main() {
+    char nomes[max][20];
+    int i, j;
+    
+    // input
+    printf("Digite os nomes");
+    for (i = 0; i < max; i++) {
+        printf("Nome %d: ", i+1);
+        gets(nomes[i]);
+    }
 
+    ordenar(nomes);
+    for (i = 0; i < max; i++) {
+        puts(nomes[i]);
+    }
     return 0;
 }
