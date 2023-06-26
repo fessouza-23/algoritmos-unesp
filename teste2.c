@@ -10,8 +10,8 @@ void decresOrder(char nomes[max][20]) {
         for (j = i + 1; j < max; j++) {
             if (stricmp(nomes[i], nomes[j]) < 0) {
                 strcpy(aux, nomes[i]);
-                strcpy(nomes[j], nomes[i]);
-                strcpy(nomes[i], aux);
+                strcpy(nomes[i], nomes[j]);
+                strcpy(nomes[j], aux);
             }
         }
     }
