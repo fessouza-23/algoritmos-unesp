@@ -1,0 +1,12 @@
+seg
+qua
+sex
+ter
+A matriz de inteiros v é inicializada com os valores {0, 0, 1, 1, 4, 5}.
+A matriz de strings c é inicializada com os valores {"seg", "ter", "qua", "", "sex", "sab"}.
+O loop while é executado enquanto i é menor que 6. A cada iteração, imprime o valor correspondente em c[v[i]] e incrementa i em 2.
+Na primeira iteração, i é igual a 0, então c[v[0]] é c[0], que corresponde a "seg".
+Na segunda iteração, i é igual a 2, então c[v[2]] é c[1], que corresponde a "ter".
+Na terceira iteração, i é igual a 4, então c[v[4]] é c[4], que corresponde a "sex".
+Após o loop, imprime o valor de c[v[v[2]]], que é c[v[1]], ou seja, c[0], resultando em "seg".
+Portanto, os resultados impressos serão "seg", "qua", "sex", "ter", "seg".

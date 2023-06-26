@@ -1,0 +1,12 @@
+"mno" e "m\no":
+
+"mno" é uma sequência literal de caracteres que representa os caracteres 'm', 'n' e 'o' em ordem.
+"m\no" é uma sequência que contém o caractere 'm', seguido por um caractere de nova linha ('\n'), e depois o caractere 'o'. O caractere '\n' representa uma quebra de linha.
+"MNOP" e "MN0P":
+
+"MNOP" é uma sequência literal de caracteres que representa os caracteres 'M', 'N', 'O' e 'P' em ordem.
+"MN0P" é uma sequência que contém os caracteres 'M', 'N', '0' e 'P'. O caractere '0' é um dígito zero.
+"MN\0P" e "MN0P":
+
+"MN\0P" é uma sequência que contém os caracteres 'M', 'N', um caractere nulo ('\0') e 'P'. O caractere '\0' é usado como terminador de string em C, indicando o final da sequência de caracteres.
+"MN0P" é uma sequência que contém os caracteres 'M', 'N', '0' e 'P'. Nesse caso, não há um terminador de string explícito.
