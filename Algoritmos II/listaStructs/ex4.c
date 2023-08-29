@@ -79,7 +79,6 @@ racional realizarOperacao(racional racional1, racional racional2, char operador)
     return result;
 }
 
-
 void imprimirRacional(racional r)
 {
     printf("%d/%d", r.numerador, r.denominador);
