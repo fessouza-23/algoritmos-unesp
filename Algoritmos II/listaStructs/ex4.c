@@ -32,45 +32,53 @@ int mmc(int num1, int num2)
     return num1 * (num2 / mdc(num1, num2));
 }
 
-racional somarRacionais(racional racional1, racional racional2)
+void simplificarRacional(racional *racional)
 {
-    int mmc_var = mmc(racional1.denominador, racional2.denominador);
-    
-    racional1.numerador = (mmc_var / racional1.denominador) * racional1.numerador;
-    racional2.numerador = (mmc_var / racional2.denominador) * racional2.numerador;
+    int divisor_comum = mdc(racional->denominador, racional->numerador);
+    racional->numerador /= divisor_comum;
+    racional->denominador /= divisor_comum;
+}
 
-    racional result = {
-        .numerador = racional1.numerador + racional2.numerador,
-        .denominador = mmc_var
-    };
+racional realizarOperacao(racional racional1, racional racional2, char operador)
+{
+    racional result;
+
+    if (operador == '+')
+    {
+        int mmc_var = mmc(racional1.denominador, racional2.denominador);
+
+        racional1.numerador = (mmc_var / racional1.denominador) * racional1.numerador;
+        racional2.numerador = (mmc_var / racional2.denominador) * racional2.numerador;
+
+        result.numerador = racional1.numerador + racional2.numerador;
+        result.denominador = mmc_var;
+    }
+    else if (operador == '-')
+    {
+        int mmc_var = mmc(racional1.denominador, racional2.denominador);
+
+        racional1.numerador = (mmc_var / racional1.denominador) * racional1.numerador;
+        racional2.numerador = (mmc_var / racional2.denominador) * racional2.numerador;
+
+        result.numerador = racional1.numerador - racional2.numerador;
+        result.denominador = mmc_var;
+    }
+    else if (operador == '*')
+    {
+        result.numerador = racional1.numerador * racional2.numerador;
+        result.denominador = racional1.denominador * racional2.denominador;
+    }
+    else if (operador == '/')
+    {
+        result.numerador = racional1.numerador * racional2.denominador;
+        result.denominador = racional1.denominador * racional2.numerador;
+    }
+
+    simplificarRacional(&result);
 
     return result;
 }
 
-racional subtrairRacionais(racional racional1, racional racional2)
-{
-    int mmc_var = mmc(racional1.denominador, racional2.denominador);
-    
-    racional1.numerador = (mmc_var / racional1.denominador) * racional1.numerador;
-    racional2.numerador = (mmc_var / racional2.denominador) * racional2.numerador;
-
-    racional result = {
-        .numerador = racional1.numerador - racional2.numerador,
-        .denominador = mmc_var
-    };
-
-    return result;
-}
-
-racional multiplicarRacionais(racional racional1, racional racional2)
-{
-    racional result = {
-        .numerador = racional1.numerador * racional2.numerador,
-        .denominador = racional1.denominador * racional2.denominador
-    };
-
-    return result;
-}
 
 void imprimirRacional(racional r)
 {
@@ -87,35 +95,37 @@ int main()
     printf("\nRACIONAL 2\n");
     lerRacional(&racional2);
 
-    racional resultado_soma_racionais = somarRacionais(racional1, racional2);
-
     printf("\nSOMA\n");
     imprimirRacional(racional1);
     printf(" + ");
     imprimirRacional(racional2);
     printf(" = ");
-    imprimirRacional(resultado_soma_racionais);
+    imprimirRacional(realizarOperacao(racional1, racional2, '+'));
     printf("\n");
-
-    racional resultado_subtracao_racionais = subtrairRacionais(racional1, racional2);
 
     printf("\nSUBTRACAO\n");
     imprimirRacional(racional1);
     printf(" - ");
     imprimirRacional(racional2);
     printf(" = ");
-    imprimirRacional(resultado_subtracao_racionais);
+    imprimirRacional(realizarOperacao(racional1, racional2, '-'));
     printf("\n");
-
-    racional resultado_multiplicacao_racionais = multiplicarRacionais(racional1, racional2);
 
     printf("\nMULTIPLICACAO\n");
     imprimirRacional(racional1);
     printf(" * ");
     imprimirRacional(racional2);
     printf(" = ");
-    imprimirRacional(resultado_multiplicacao_racionais);
+    imprimirRacional(realizarOperacao(racional1, racional2, '*'));
     printf("\n");
 
+
+    printf("\nDIVISAO\n");
+    imprimirRacional(racional1);
+    printf(" / ");
+    imprimirRacional(racional2);
+    printf(" = ");
+    imprimirRacional(realizarOperacao(racional1, racional2, '/'));
+    printf("\n");
     return 0;
 }
