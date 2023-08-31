@@ -25,7 +25,7 @@ void cadastra()
     if ((file = fopen(nome_arquivo, "a+b")) == NULL)
     {
         printf("Erro na abertura do arquivo.\n\n");
-        getchar();
+        getch();
         return;
     }
 
@@ -68,7 +68,7 @@ void mostra()
     if ((file = fopen(nome_arquivo, "rb")) == NULL)
     {
         printf("\nErro de abertura de arquivo.\n\n");
-        getchar();
+        getch();
         return;
     }
 
@@ -87,6 +87,41 @@ void mostra()
     getch();
 }
 
+void consultaCodigo() {
+    FILE *file;
+    Produto produto;
+    int achou = 0;
+    int codigo_consulta;
+
+    system("cls");
+
+    // abertura do arquivo
+    if ((file = fopen(nome_arquivo, "rb")) == NULL) {
+        printf("\nErro de abertura de arquivo.\n\n");
+        getch();
+        return;
+    }
+
+    // cod para consulta
+    printf("\nCodigo do produto a ser consultado: ");
+    scanf("%d", &codigo_consulta);
+
+    // leitura dos registro
+    while(fread(&produto, sizeof(Produto), 1, file) == 1) {
+        if (produto.existe && produto.cod == codigo_consulta) {
+            system("cls");
+            printf("CODIGO    QUANTIDADE     VALOR UNITARIO       DESCRICAO");
+            printf("\n%3d %11d %19.2f %16s\n", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
+            achou = 1;
+            break;
+        }
+    }
+    if (!achou)
+        printf("O produto de codigo %d nao esta cadastrado.\n\n", codigo_consulta);
+
+    fclose(file);
+    getch();
+}
 
 void menu(char *opcao)
 {
@@ -121,7 +156,7 @@ int main()
             mostra();
             break;
         case '3':
-            // consultaNumero(nome_arquivo);
+            consultaCodigo();
             break;
         case '4':
             // consultaNome(nome_arquivo);
