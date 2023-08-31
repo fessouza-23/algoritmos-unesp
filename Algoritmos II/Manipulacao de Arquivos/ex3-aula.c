@@ -47,15 +47,15 @@ void cadastra()
         produto.existe = 1;
         printf("\n\nCodigo do produto: ");
         scanf("%d", &produto.cod);
-        getchar(); // Consumir o caractere de nova linha
+        getchar();
 
         printf("Quantidade em estoque do produto: ");
         scanf("%d", &produto.quant);
-        getchar(); // Consumir o caractere de nova linha
+        getchar();
 
         printf("Valor unitario: ");
         scanf("%f", &produto.valor_unitario);
-        getchar(); // Consumir o caractere de nova linha
+        getchar();
 
         printf("Descricao: ");
         fgets(produto.descricao, sizeof(produto.descricao), stdin);
@@ -116,7 +116,7 @@ void consultaCodigo()
 
     system("cls");
 
-    // abertura do arquivo
+    // Abertura do arquivo
     if ((file = fopen(nome_arquivo, "rb")) == NULL)
     {
         printf("\nErro de abertura de arquivo.\n\n");
@@ -135,7 +135,7 @@ void consultaCodigo()
         {
             system("cls");
             printf("CODIGO    QUANTIDADE     VALOR UNITARIO       DESCRICAO");
-            printf("\n%3d %11d %19.2f %16s\n", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
+            printf("\n%3d %11d %19.2f %18s", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
             achou = 1;
             break;
         }
@@ -147,7 +147,7 @@ void consultaCodigo()
     getch();
 }
 
-void alteraCodigo()
+void alteraRegCodigo()
 {
     FILE *file;
     Produto produto;
@@ -155,7 +155,7 @@ void alteraCodigo()
 
     system("cls");
 
-    // abertura do arquivo
+    // Abertura do arquivo
     if ((file = fopen(nome_arquivo, "r+b")) == NULL)
     {
         printf("\nErro na abertura do arquivo.\n\n");
@@ -163,11 +163,11 @@ void alteraCodigo()
         return;
     }
 
-    // codigo de referencia
+    // Codigo de referencia
     printf("Codigo do produto que deseja alterar: ");
     scanf("%d", &codigo_referencia);
 
-    // leitura dos produtos
+    // Leitura dos produtos
     while (fread(&produto, sizeof(Produto), 1, file) == 1)
     {
         if (produto.existe && produto.cod == codigo_referencia)
@@ -176,7 +176,7 @@ void alteraCodigo()
             printf("CODIGO    QUANTIDADE     VALOR UNITARIO       DESCRICAO");
             printf("\n%3d %11d %19.2f %16s\n", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
 
-            // atualização do registro
+            // Atualização do registro
             printf("\nQuantidade: ");
             scanf("%d", &produto.quant);
 
@@ -187,9 +187,9 @@ void alteraCodigo()
             fflush(stdin);
             gets(produto.descricao);
 
-            // volta o ponteiro para o inicio do registro
+            // Volta o ponteiro para o inicio do registro
             fseek(file, -sizeof(Produto), SEEK_CUR);
-            // grava os dados alterados
+            // Grava os dados alterados
             fwrite(&produto, sizeof(Produto), 1, file);
             achou = 1;
             break;
@@ -209,7 +209,7 @@ void apagaRegCodigo()
 
     system("cls");
 
-    // abertura do arquivo
+    // Abertura do arquivo
     if ((file = fopen(nome_arquivo, "r+b")) == NULL)
     {
         printf("\nErro na abertura de arquivo.\n\n");
@@ -220,7 +220,7 @@ void apagaRegCodigo()
     printf("Codigo do produto que deseja excluir: ");
     scanf("%d", &codigo_referencia);
 
-    // leitura dos registros
+    // Leitura dos registros
     while (fread(&produto, sizeof(Produto), 1, file) == 1)
     {
         if (produto.existe && produto.cod == codigo_referencia)
@@ -232,9 +232,9 @@ void apagaRegCodigo()
             if (confirma() == 'S')
             {
                 produto.existe = 0;
-                // voltando ponteiro
+                // Voltando ponteiro
                 fseek(file, -sizeof(Produto), SEEK_CUR);
-                // gravando dados alterados
+                // Gravando dados alterados
                 fwrite(&produto, sizeof(Produto), 1, file);
                 fflush(file);
                 printf("\nProduto removido.\n\n");
@@ -244,7 +244,7 @@ void apagaRegCodigo()
                 printf("\n\nProduto codigo %d nao removido.\n\n", produto.cod);
             }
             achou = 1;
-            break; // Remove this line
+            break;
         }
     }
     if (!achou)
@@ -259,7 +259,7 @@ void remocaoFisica()
     FILE *arqaux;
     Produto produto;
 
-    // abertura do arquivo
+    // Abertura do arquivo
     if ((file = fopen(nome_arquivo, "rb")) == NULL)
     {
         printf("\nErro na realizacao da remocao fisica.\n\n");
@@ -267,13 +267,13 @@ void remocaoFisica()
         return;
     }
 
-    // abre um arquivo auxiliar para copiar os registros nao removidos logicamente
+    // Abre um arquivo auxiliar para copiar os registros nao removidos logicamente
     arqaux = fopen("NOME.bak", "wb");
 
     while (fread(&produto, sizeof(Produto), 1, file) == 1)
     {
         if (produto.existe)
-            fwrite(&produto, sizeof(Produto), 1, arqaux); // copiando dados para arquivo auxiliar
+            fwrite(&produto, sizeof(Produto), 1, arqaux); // Copiando dados para arquivo auxiliar
     }
     fclose(file);
     fclose(arqaux);
@@ -321,7 +321,7 @@ int main()
             consultaCodigo();
             break;
         case '4':
-            alteraCodigo();
+            alteraRegCodigo();
             break;
         case '5':
             apagaRegCodigo();
