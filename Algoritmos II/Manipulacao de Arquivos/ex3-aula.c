@@ -10,8 +10,19 @@ typedef struct
     int quant;
     int existe;
     float valor_unitario;
-    char descricao[20];
+    char descricao[50];
 } Produto;
+
+char confirma()
+{
+    char resp;
+    printf("Confirma (S/N)?");
+    do
+    {
+        resp = toupper(getch());
+    } while (resp != 'S' && resp != 'N');
+    return resp;
+}
 
 void cadastra()
 {
@@ -36,17 +47,26 @@ void cadastra()
         produto.existe = 1;
         printf("\n\nCodigo do produto: ");
         scanf("%d", &produto.cod);
+        getchar(); // Consumir o caractere de nova linha
 
         printf("Quantidade em estoque do produto: ");
         scanf("%d", &produto.quant);
+        getchar(); // Consumir o caractere de nova linha
 
         printf("Valor unitario: ");
         scanf("%f", &produto.valor_unitario);
+        getchar(); // Consumir o caractere de nova linha
 
         printf("Descricao: ");
-        scanf("%19s", produto.descricao); // Usando %19s para evitar overflow
+        fgets(produto.descricao, sizeof(produto.descricao), stdin);
 
-        // salvando produto no arquivo
+        // Removendo o caractere de nova linha no final da descrição
+        size_t len = strlen(produto.descricao);
+        if (len > 0 && produto.descricao[len - 1] == '\n') {
+            produto.descricao[len - 1] = '\0';
+        }
+
+        // Salvando produto no arquivo
         fwrite(&produto, sizeof(Produto), 1, file);
 
         // Verificando se o usuário deseja inserir um novo produto
@@ -78,7 +98,7 @@ void mostra()
     {
         if (produto.existe == 1)
         {
-            printf("\n%3d %11d %19.2f %16s", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
+            printf("\n%3d %11d %19.2f %18s", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
         }
     }
 
@@ -181,6 +201,90 @@ void alteraCodigo()
     getch();
 }
 
+void apagaRegCodigo()
+{
+    FILE *file;
+    Produto produto;
+    int codigo_referencia, achou = 0;
+
+    system("cls");
+
+    // abertura do arquivo
+    if ((file = fopen(nome_arquivo, "r+b")) == NULL)
+    {
+        printf("\nErro na abertura de arquivo.\n\n");
+        getch();
+        return;
+    }
+
+    printf("Codigo do produto que deseja excluir: ");
+    scanf("%d", &codigo_referencia);
+
+    // leitura dos registros
+    while (fread(&produto, sizeof(Produto), 1, file) == 1)
+    {
+        if (produto.existe && produto.cod == codigo_referencia)
+        {
+            system("cls");
+            printf("CODIGO    QUANTIDADE     VALOR UNITARIO     DESCRICAO");
+            printf("\n%3d %11d %19.2f %22s\n", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
+
+            if (confirma() == 'S')
+            {
+                produto.existe = 0;
+                // voltando ponteiro
+                fseek(file, -sizeof(Produto), SEEK_CUR);
+                // gravando dados alterados
+                fwrite(&produto, sizeof(Produto), 1, file);
+                fflush(file);
+                printf("\nProduto removido.\n\n");
+            }
+            else
+            {
+                printf("\n\nProduto codigo %d nao removido.\n\n", produto.cod);
+            }
+            achou = 1;
+            break; // Remove this line
+        }
+    }
+    if (!achou)
+        printf("Produto de codigo %d nao esta cadastrado.\n\n", codigo_referencia);
+    fclose(file);
+    getch();
+}
+
+void remocaoFisica()
+{
+    FILE *file;
+    FILE *arqaux;
+    Produto produto;
+
+    // abertura do arquivo
+    if ((file = fopen(nome_arquivo, "rb")) == NULL)
+    {
+        printf("\nErro na realizacao da remocao fisica.\n\n");
+        getch();
+        return;
+    }
+
+    // abre um arquivo auxiliar para copiar os registros nao removidos logicamente
+    arqaux = fopen("NOME.bak", "wb");
+
+    while (fread(&produto, sizeof(Produto), 1, file) == 1)
+    {
+        if (produto.existe)
+            fwrite(&produto, sizeof(Produto), 1, arqaux); // copiando dados para arquivo auxiliar
+    }
+    fclose(file);
+    fclose(arqaux);
+
+    remove(nome_arquivo);
+    rename("NOME.BAK", nome_arquivo);
+
+    printf("\n\nRemocao fisica realizada.");
+    getch();
+}
+
 void menu(char *opcao)
 {
     system("cls");
@@ -220,15 +324,14 @@ int main()
             alteraCodigo();
             break;
         case '5':
-            // alteraNumero(nome_arquivo);
+            apagaRegCodigo();
             break;
         case '6':
-            exit();
             break;
         default:
             printf("\nOpcao errada.\n");
         }
-    } while (opcao != '7');
-
+    } while (opcao != '6');
+    remocaoFisica();
     return 0;
 }
