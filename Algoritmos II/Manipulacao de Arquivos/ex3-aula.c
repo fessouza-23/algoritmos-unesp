@@ -87,16 +87,18 @@ void mostra()
     getch();
 }
 
-void consultaCodigo() {
+void consultaCodigo()
+{
     FILE *file;
     Produto produto;
     int achou = 0;
-    int codigo_consulta;
+    int codigo_referencia;
 
     system("cls");
 
     // abertura do arquivo
-    if ((file = fopen(nome_arquivo, "rb")) == NULL) {
+    if ((file = fopen(nome_arquivo, "rb")) == NULL)
+    {
         printf("\nErro de abertura de arquivo.\n\n");
         getch();
         return;
@@ -104,11 +106,13 @@ void consultaCodigo() {
 
     // cod para consulta
     printf("\nCodigo do produto a ser consultado: ");
-    scanf("%d", &codigo_consulta);
+    scanf("%d", &codigo_referencia);
 
     // leitura dos registro
-    while(fread(&produto, sizeof(Produto), 1, file) == 1) {
-        if (produto.existe && produto.cod == codigo_consulta) {
+    while (fread(&produto, sizeof(Produto), 1, file) == 1)
+    {
+        if (produto.existe && produto.cod == codigo_referencia)
+        {
             system("cls");
             printf("CODIGO    QUANTIDADE     VALOR UNITARIO       DESCRICAO");
             printf("\n%3d %11d %19.2f %16s\n", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
@@ -117,8 +121,62 @@ void consultaCodigo() {
         }
     }
     if (!achou)
-        printf("O produto de codigo %d nao esta cadastrado.\n\n", codigo_consulta);
+        printf("O produto de codigo %d nao esta cadastrado.\n\n", codigo_referencia);
 
+    fclose(file);
+    getch();
+}
+
+void alteraCodigo()
+{
+    FILE *file;
+    Produto produto;
+    int codigo_referencia, achou = 0;
+
+    system("cls");
+
+    // abertura do arquivo
+    if ((file = fopen(nome_arquivo, "r+b")) == NULL)
+    {
+        printf("\nErro na abertura do arquivo.\n\n");
+        getch();
+        return;
+    }
+
+    // codigo de referencia
+    printf("Codigo do produto que deseja alterar: ");
+    scanf("%d", &codigo_referencia);
+
+    // leitura dos produtos
+    while (fread(&produto, sizeof(Produto), 1, file) == 1)
+    {
+        if (produto.existe && produto.cod == codigo_referencia)
+        {
+            system("cls");
+            printf("CODIGO    QUANTIDADE     VALOR UNITARIO       DESCRICAO");
+            printf("\n%3d %11d %19.2f %16s\n", produto.cod, produto.quant, produto.valor_unitario, produto.descricao);
+
+            // atualização do registro
+            printf("\nQuantidade: ");
+            scanf("%d", &produto.quant);
+
+            printf("Valor unitario: ");
+            scanf("%f", &produto.valor_unitario);
+
+            printf("Descricao: ");
+            fflush(stdin);
+            gets(produto.descricao);
+
+            // volta o ponteiro para o inicio do registro
+            fseek(file, -sizeof(Produto), SEEK_CUR);
+            // grava os dados alterados
+            fwrite(&produto, sizeof(Produto), 1, file);
+            achou = 1;
+            break;
+        }
+    }
+    if (!achou)
+        printf("O produto de codigo %d nao esta cadastrado.\n\n", codigo_referencia);
     fclose(file);
     getch();
 }
@@ -130,9 +188,9 @@ void menu(char *opcao)
     printf("\n 1 - Cadastrar produto.");
     printf("\n 2 - Mostrar todos os produtos.");
     printf("\n 3 - Consultar produto pelo codigo.");
-    printf("\n 5 - Altera produto pelo codigo.");
-    printf("\n 6 - Apaga pelo codigo.");
-    printf("\n 7 - Sair");
+    printf("\n 4 - Alterar produto pelo codigo.");
+    printf("\n 5 - Apagar pelo codigo.");
+    printf("\n 6 - Sair");
     printf("\n\n Opcao ---> ");
     do
     {
@@ -159,15 +217,13 @@ int main()
             consultaCodigo();
             break;
         case '4':
-            // consultaNome(nome_arquivo);
+            alteraCodigo();
             break;
         case '5':
             // alteraNumero(nome_arquivo);
             break;
         case '6':
-            // apagaRegNumero(nome_arquivo);
-            break;
-        case '7':
+            exit();
             break;
         default:
             printf("\nOpcao errada.\n");
