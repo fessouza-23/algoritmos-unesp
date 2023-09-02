@@ -5,43 +5,76 @@
 int main()
 {
     FILE *file, *file2, *file3;
-    char texto[100];
+    char texto[81], nome_arquivo1[20];
 
-    if ((file = fopen("arq.txt", "r")) == NULL)
+    system("cls");
+    printf("- Gravando no primeiro arquivo -\n");
+    if ((file = fopen("arquivo1.txt", "a+")) == NULL)
     {
-        printf("Erro ao abrir o arquivo.\n\n");
+        printf("\n file não pode ser aberto");
         getch();
-        return;
+        return 1;
     }
 
-    if ((file2 = fopen("arq2.txt", "r")) == NULL)
+    while (strlen(gets(texto)) > 0)
     {
-        printf("Erro ao abrir o arquivo.\n\n");
+        fputs(texto, file);
+        putc('\n', file);
+    }
+    fclose(file);
+
+    system("cls");
+    printf("- Gravando no segundo arquivo -\n");
+    if ((file = fopen("arquivo2.txt", "a+")) == NULL)
+    {
+        printf("\n file não pode ser aberto");
         getch();
-        return;
+        return 1;
     }
 
-    if ((file3 = fopen("arq3.txt", "a+")) == NULL)
+    while (strlen(gets(texto)) > 0)
     {
-        printf("Erro ao abrir o arquivo.\n\n");
+        fputs(texto, file);
+        putc('\n', file);
+    }
+    fclose(file);
+
+    if ((file = fopen("arquivo1.txt", "r")) == NULL)
+    {
+        printf("Erro ao abrir o arquivo1.txt\n");
         getch();
-        return;
+        return 1;
+    }
+
+    if ((file2 = fopen("arquivo2.txt", "r")) == NULL)
+    {
+        printf("Erro ao abrir o arquivo2.txt\n");
+        getch();
+        return 1;
+    }
+
+    if ((file3 = fopen("arquivo_merge.txt", "a+")) == NULL)
+    {
+        printf("Erro ao abrir o arquivo_merge.txt\n");
+        getch();
+        return 1;
     }
 
     while (fgets(texto, 100, file) != NULL)
     {
         fprintf(file3, "%s", texto);
-        putc('\n', file3);
     }
 
     while (fgets(texto, 100, file2) != NULL)
     {
         fprintf(file3, "%s", texto);
-        putc('\n', file3);
     }
 
+    printf("Arquivo merge criado.\n");
+    getch();
     fclose(file);
     fclose(file2);
     fclose(file3);
+
     return 0;
 }

@@ -6,11 +6,15 @@
 int main()
 {
     FILE *file;
-    char caractere;
+    char caractere, arquivo[20];
     int quant_vogais = 0, quant_consoantes = 0, achou;
     char vogais[] = {"AEIOU"};
 
-    if ((file = fopen("arq.txt", "r")) == NULL)
+    system("cls");
+    printf("Arquivo de texto .txt: ");
+    scanf("%s", arquivo);
+
+    if ((file = fopen(arquivo, "r")) == NULL)
     {
         printf("Erro ao abrir o arquivo.\n\n");
         getch();
@@ -38,7 +42,7 @@ int main()
             }
         }
     }
-    system("cls");
+
     printf("Vogais: %d\nConsoantes: %d\n", quant_vogais, quant_consoantes);
     getch();
     return 0;
