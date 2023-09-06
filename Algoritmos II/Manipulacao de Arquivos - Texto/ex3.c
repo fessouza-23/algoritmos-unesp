@@ -3,7 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
-int main() {
+int main()
+{
     FILE *file;
     char arquivo[20];
     char caracter;
@@ -14,17 +15,24 @@ int main() {
     printf("Nome do arquivo de texto .txt: ");
     scanf("%s", arquivo);
 
-    if ((file = fopen(arquivo, "r")) == NULL) {
+    if ((file = fopen(arquivo, "r")) == NULL)
+    {
         printf("Erro ao abrir o arquivo.\n\n");
         return 1;
     }
 
-    while ((caracter = fgetc(file)) != EOF) {
-        if (isalpha(caracter)) {
+    while ((caracter = fgetc(file)) != EOF)
+    {
+        if (isalpha(caracter))
+        {
             quant_letras++;
-        } else if (isdigit(caracter)) {
+        }
+        else if (isdigit(caracter))
+        {
             quant_digitos++;
-        } else if (caracter == '\n') {
+        }
+        else if (caracter == '\n')
+        {
             quant_linhas++;
         }
         frequencia[(int)caracter]++;
@@ -37,8 +45,10 @@ int main() {
     char caractere_mais_frequente = 0;
     int max_frequencia = 0;
 
-    for (int i = 0; i < 256; i++) {
-        if (frequencia[i] > max_frequencia) {
+    for (int i = 0; i < 256; i++)
+    {
+        if (frequencia[i] > max_frequencia)
+        {
             max_frequencia = frequencia[i];
             caractere_mais_frequente = (char)i;
         }
