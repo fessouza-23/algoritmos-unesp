@@ -23,12 +23,8 @@ int main() {
     caractere = getc(file);
     achou = 0;
     if (toupper(caractere) >= 'A' && toupper(caractere) <= 'Z') {
-      for (int i = 0; i < strlen(vogais); i++)
-
-      {
-        if (toupper(caractere) == vogais[i])
-
-        {
+      for (int i = 0; i < strlen(vogais); i++) {
+        if (toupper(caractere) == vogais[i]) {
           quant_vogais++;
           achou = 1;
           break;
