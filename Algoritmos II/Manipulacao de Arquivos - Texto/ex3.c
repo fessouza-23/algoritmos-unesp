@@ -20,13 +20,14 @@ int main() {
   }
 
   while ((caracter = fgetc(file)) != EOF) {
-    if (isalpha(caracter)) {
-      quant_letras++;
-    } else if (isdigit(caracter)) {
-      quant_digitos++;
-    } else if (caracter == '\n') {
-      quant_linhas++;
+    if (caracter != ' ' && caracter != '\n') {
+      if (isalpha(caracter))
+        quant_letras++;
+      else if (isdigit(caracter))
+        quant_digitos++;
     }
+    if (caracter == '\n')
+      quant_linhas++;
     frequencia[(int)caracter]++;
   }
 
@@ -38,7 +39,7 @@ int main() {
   int max_frequencia = 0;
 
   for (int i = 0; i < 256; i++) {
-    if (frequencia[i] > max_frequencia) {
+    if (frequencia[i] > max_frequencia && i != ' ' && i != '\n') {
       max_frequencia = frequencia[i];
       caractere_mais_frequente = (char)i;
     }
