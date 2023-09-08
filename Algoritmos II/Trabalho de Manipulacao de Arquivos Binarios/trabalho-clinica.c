@@ -1,7 +1,7 @@
+#include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
 #define esc 27
 typedef struct {
   int codigo;
@@ -15,12 +15,14 @@ FILE *abrirArquivo(const char nome_arquivo[20], const char op[5]) {
   FILE *file;
   if ((file = fopen(nome_arquivo, op)) == NULL) {
     printf("Erro ao abrir o arquivo.\n\n");
-    exit(1);
+    eixt(1);
   }
   return file;
 }
 
 void cadastrarCliente(Cliente *c) {
+  FILE *file;
+
   system("cls");
   printf("CADASTRO DE NOVO CLIENTE\n");
   printf("Codigo: ");
@@ -38,9 +40,11 @@ void cadastrarCliente(Cliente *c) {
   printf("Telefone: ");
   fgets(c->fone, sizeof(c->fone), stdin);
   c->fone[strlen(c->fone) - 1] = '\0';
-  system("cls");
-  printf("Cliente cadastrado!\n");
-  getch();
+
+  // Gravação do Cliente no arquivo
+  abrirArquivo("clientes.dat", "a+b");
+  fwrite(c, sizeof(Cliente), 1, file);
+  fclose(file);
 }
 
 void menu(Cliente *c) {
@@ -48,28 +52,29 @@ void menu(Cliente *c) {
 
   do {
     system("cls");
-    printf("================================  MENU  =======================================\n");
+    printf("================================  MENU  "
+           "=======================================\n");
     printf("1 - Cadastrar cliente\n");
     printf("2 - Listar clientes\n");
     printf("ESC - Sair\n");
     op = getch();
 
     switch (op) {
-      case '1':
-        cadastrarCliente(c);
-        break;
+    case '1':
+      cadastrarCliente(c);
+      break;
 
-      case '2':
-        // Implement listing clients here
-        break;
+    case '2':
+      // Implement listing clients here
+      break;
 
-      case esc:
-        // Handle the ESC key press
-        break;
+    case esc:
+      // Handle the ESC key press
+      break;
 
-      default:
-        printf("Opcao invalida. Tente novamente.\n");
-        break;
+    default:
+      printf("Opcao invalida. Tente novamente.\n");
+      break;
     }
   } while (op != esc);
 }
