@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define esc 27
+
 typedef struct {
   int codigo;
   char nome[50];
@@ -15,7 +16,7 @@ FILE *abrirArquivo(const char nome_arquivo[20], const char op[5]) {
   FILE *file;
   if ((file = fopen(nome_arquivo, op)) == NULL) {
     printf("Erro ao abrir o arquivo.\n\n");
-    eixt(1);
+    exit(1);
   }
   return file;
 }
@@ -42,7 +43,7 @@ void cadastrarCliente(Cliente *c) {
   c->fone[strlen(c->fone) - 1] = '\0';
 
   // Gravação do Cliente no arquivo
-  abrirArquivo("clientes.dat", "a+b");
+  file = abrirArquivo("clientes.dat", "a+b");
   fwrite(c, sizeof(Cliente), 1, file);
   fclose(file);
 }
