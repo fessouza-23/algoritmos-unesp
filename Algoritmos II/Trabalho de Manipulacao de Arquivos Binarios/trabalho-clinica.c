@@ -1,7 +1,18 @@
+
+/*
+Trabalho de Algoritmos II - Gerenciamento de Clinica
+a partir de Manipulação de arquivos binarios
+realizado por:
+ - João Victor Fernandes Souza
+ - Eduardo Teixeira
+ - Gabriel Rasi
+ - Guilherme Silva
+*/
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #define esc 27
 typedef struct {
   int codigo;
@@ -96,8 +107,7 @@ void atualizarCliente() {
   printf("Digite o código do cliente: ");
   scanf("%d", &codigo_ref);
 
-  file = abrirArquivo("clientes.dat", "rb");
-  tempFile = abrirArquivo("temp.dat", "wb"); // Arquivo temporário para escrita
+  file = abrirArquivo("clientes.dat", "r+b");
 
   while (fread(&c, sizeof(Cliente), 1, file) == 1) {
     if (c.codigo == codigo_ref) {
@@ -143,9 +153,9 @@ void menu(Cliente *c) {
     system("cls");
     printf("================================  MENU  "
            "=======================================\n");
-    printf("1 - Cadastrar cliente\n");
-    printf("2 - Listar clientes\n");
-    printf("3- Atualizar cliente\n");
+    printf("1. Cadastrar cliente\n");
+    printf("2. Listar clientes\n");
+    printf("3. Atualizar cliente\n");
     printf("ESC - Sair\n");
     op = getch();
 
