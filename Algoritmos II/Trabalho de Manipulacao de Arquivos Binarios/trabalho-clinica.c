@@ -9,11 +9,14 @@ realizado por:
  - Guilherme Silva
 */
 #include <conio.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+
 #define esc 27
+#define f1 59
+
 typedef struct {
   int codigo;
   char nome[50];
@@ -31,30 +34,53 @@ FILE *abrirArquivo(const char nome_arquivo[20], const char op[5]) {
   return file;
 }
 
-void cadastrarCliente(Cliente *c) {
+int confirma() {
+  char resp;
+  do {
+    resp = toupper(getch());
+  } while (resp != 'S' && resp != 'N');
+  
+  return (resp == 'S') ? 1 : 0;
+}
+
+void sobre() {
+  system("cls");
+  printf("================================  SOBRE O PROGRAMA  "
+         "=======================================\n");
+  printf("Programa desenvolvido por Eduardo R. Teixeira, Joao V. F. Souza, Gabriel Rasi e Guilherme S.\n"
+         "Disciplina de Algoritmos II do curso de BSI\n");
+  printf("Criado em 2023\n");
+  printf("\nPressione qualquer tecla para voltar ao menu.\n");
+  getch();
+}
+
+void cadastrarCliente() {
   FILE *file;
+  Cliente c;
 
   system("cls");
   printf("CADASTRO DE NOVO CLIENTE\n");
   printf("Codigo: ");
-  scanf("%d", &c->codigo);
-  fflush(stdin); // Clear input buffer
+  scanf("%d", &c.codigo); // Corrigido: Use c.codigo em vez de &c->codigo
+  fflush(stdin);          // Limpa o buffer de entrada
   printf("Nome: ");
-  fgets(c->nome, sizeof(c->nome), stdin);
-  c->nome[strlen(c->nome) - 1] = '\0';
+  fgets(c.nome, sizeof(c.nome), stdin);
+  c.nome[strlen(c.nome) - 1] = '\0';
   printf("Idade: ");
-  scanf("%d", &c->idade);
+  scanf("%d", &c.idade);
   fflush(stdin);
   printf("Endereco: ");
-  fgets(c->endereco, sizeof(c->endereco), stdin);
-  c->endereco[strlen(c->endereco) - 1] = '\0';
+  fgets(c.endereco, sizeof(c.endereco), stdin);
+  c.endereco[strlen(c.endereco) - 1] = '\0';
   printf("Telefone: ");
-  fgets(c->fone, sizeof(c->fone), stdin);
-  c->fone[strlen(c->fone) - 1] = '\0';
+  fgets(c.fone, sizeof(c.fone), stdin);
+  c.fone[strlen(c.fone) - 1] = '\0';
 
   // Gravação do Cliente no arquivo
-  file = abrirArquivo("clientes.dat", "a+b");
-  fwrite(c, sizeof(Cliente), 1, file);
+  file = abrirArquivo(
+      "clientes.dat",
+      "ab"); // Modificado para "ab" para adicionar ao arquivo binário
+  fwrite(&c, sizeof(Cliente), 1, file); // Corrigido: Use &c em vez de c
   fclose(file);
 }
 
@@ -81,30 +107,14 @@ void consultarCliente() {
   getch();
 }
 
-int confirma() {
-  char resp;
-  do {
-    resp = getch();
-    if (toupper(resp) != 'S' && toupper(resp) != 'N') {
-      printf("Opção invalida.\n");
-    }
-  } while (toupper(resp) != 'S' && toupper(resp) != 'N');
-  if (toupper(resp) == 'S') {
-    return 1;
-  } else {
-    return 0;
-  }
-}
-
 void atualizarCliente() {
-  FILE *file, *tempFile;
-  int codigo_ref; // Código de referência = código digitado para procurar o
-                  // cliente
+  FILE *file;
+  int codigo_ref; // Código de referência = código digitado para procurar o cliente
   Cliente c;
   int achou = 0; // Variável para verificar se o cliente foi encontrado
 
   system("cls");
-  printf("Digite o código do cliente: ");
+  printf("Digite o codigo do cliente: ");
   scanf("%d", &codigo_ref);
 
   file = abrirArquivo("clientes.dat", "r+b");
@@ -112,11 +122,10 @@ void atualizarCliente() {
   while (fread(&c, sizeof(Cliente), 1, file) == 1) {
     if (c.codigo == codigo_ref) {
       system("cls");
-      printf("Cliente encontrado de código %d\n", codigo_ref);
-      printf("Código: %d\n", c.codigo);
+      printf("Cliente encontrado de codigo %d\n", codigo_ref);
       printf("Nome: %s\n", c.nome);
       printf("Idade: %d\n", c.idade);
-      printf("Endereço: %s\n", c.endereco);
+      printf("Endereco: %s\n", c.endereco);
       printf("Telefone: %s\n", c.fone);
       printf("\nDeseja realmente alterar o cliente? (s/n): ");
       if (confirma()) {
@@ -127,23 +136,26 @@ void atualizarCliente() {
         printf("Nova Idade: ");
         scanf("%d", &c.idade);
         fflush(stdin);
-        printf("Novo Endereço: ");
+        printf("Novo Endereco: ");
         gets(c.endereco);
         printf("Novo Telefone: ");
         gets(c.fone);
         fseek(file, -sizeof(Cliente), SEEK_CUR);
         fwrite(&c, sizeof(Cliente), 1, file);
         achou = 1;
-        fclose(file);
       }
     }
   }
 
+  fclose(file); // Feche o arquivo após a busca
+
   if (!achou) {
-    printf("Cliente não encontrado!\n");
+    printf("Cliente nao encontrado!\n");
   } else {
     printf("Cliente atualizado com sucesso!\n");
   }
+  printf("\nPressione qualquer tecla para voltar ao menu.\n");
+  getch();
 }
 
 void menu(Cliente *c) {
@@ -153,10 +165,10 @@ void menu(Cliente *c) {
     system("cls");
     printf("================================  MENU  "
            "=======================================\n");
-    printf("1. Cadastrar cliente\n");
-    printf("2. Listar clientes\n");
-    printf("3. Atualizar cliente\n");
-    printf("ESC - Sair\n");
+    printf("|ESC - Sair | F1 - Sobre o Programa|\n");
+    printf("1 - Cadastrar cliente\n");
+    printf("2 - Listar clientes\n");
+    printf("3 - Atualizar cliente\n");
     op = getch();
 
     switch (op) {
@@ -172,12 +184,8 @@ void menu(Cliente *c) {
       atualizarCliente(c);
       break;
 
-    case esc:
-      // Handle the ESC key press
-      break;
-
-    default:
-      printf("Opcao invalida. Tente novamente.\n");
+    case f1:
+      sobre();
       break;
     }
   } while (op != esc);
