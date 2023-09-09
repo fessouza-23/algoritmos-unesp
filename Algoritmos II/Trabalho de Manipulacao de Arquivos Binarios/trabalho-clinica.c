@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #define esc 27
-
 typedef struct {
   int codigo;
   char nome[50];
@@ -48,6 +47,29 @@ void cadastrarCliente(Cliente *c) {
   fclose(file);
 }
 
+// Esta função não está dentro as necessárias, serve apenas para testar
+void consultarCliente() {
+    FILE *file;
+    Cliente c;
+
+    system("cls");
+
+    // Abra o arquivo para leitura
+    file = abrirArquivo("clientes.dat", "rb");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    while (fread(&c, sizeof(Cliente), 1, file) == 1) {
+        printf("%d %s %d %s %s\n", c.codigo, c.nome, c.idade, c.endereco, c.fone);
+    }
+
+    fclose(file);
+    getch();
+}
+
 void menu(Cliente *c) {
   char op;
 
@@ -66,7 +88,7 @@ void menu(Cliente *c) {
       break;
 
     case '2':
-      // Implement listing clients here
+      consultarCliente(c);
       break;
 
     case esc:
