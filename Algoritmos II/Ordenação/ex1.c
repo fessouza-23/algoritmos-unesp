@@ -52,7 +52,7 @@ void vetorOndemAleatoria(int v[]) {
 
   printVetor(v, n);
 
-  system("pause");
+  getch();
 }
 
 void vetorOrdemCrescente(int v[]) {
@@ -81,7 +81,7 @@ void vetorOrdemCrescente(int v[]) {
 
   printVetor(v, n);
 
-  system("pause");
+  getch();
 }
 
 void vetorOrdemDecrescente(int v[]) {
@@ -110,7 +110,7 @@ void vetorOrdemDecrescente(int v[]) {
 
   printVetor(v, n);
 
-  system("pause");
+  getch();
 }
 
 void vetOrdemParcialCrescente(int v[]) {
@@ -140,11 +140,11 @@ void vetOrdemParcialCrescente(int v[]) {
 
   printVetor(v, n);
 
-  system("pause");
+  getch();
 }
 
 int main() {
-  srand(time(NULL)); // inicializa o gerador de numeros aleatorios, seed = tempo
+  srand(time(NULL));
 
   char op;
   do {
