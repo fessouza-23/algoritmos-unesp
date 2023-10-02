@@ -6,9 +6,6 @@
 #define esc 27
 #define MAX_SIZE 1000
 
-int v[MAX_SIZE]; // vetor
-int n;           // numero de elementos
-
 void troca(int *x, int *y) {
   int temp = *x;
   *x = *y;
@@ -38,7 +35,7 @@ void printVetor(int v[], int n) {
 }
 
 void vetorOndemAleatoria(int v[]) {
-  int i, maxValueVet;
+  int i, maxElementVet;
 
   system("cls");
 
@@ -46,9 +43,9 @@ void vetorOndemAleatoria(int v[]) {
   scanf("%d", &n);
 
   printf("Valor maximo que sera gerado: ");
-  scanf("%d", &maxValueVet);
+  scanf("%d", &maxElementVet);
 
-  gerarVetorAleatorio(v, n, maxValueVet);
+  gerarVetorAleatorio(v, n, maxElementVet);
 
   printVetor(v, n);
 
@@ -56,7 +53,7 @@ void vetorOndemAleatoria(int v[]) {
 }
 
 void vetorOrdemCrescente(int v[]) {
-  int i, j, min_ind, maxValueVet;
+  int i, j, min_ind, maxElementVet;
 
   system("cls");
 
@@ -64,9 +61,9 @@ void vetorOrdemCrescente(int v[]) {
   scanf("%d", &n);
 
   printf("Valor maximo que sera gerado: ");
-  scanf("%d", &maxValueVet);
+  scanf("%d", &maxElementVet);
 
-  gerarVetorAleatorio(v, n, maxValueVet);
+  gerarVetorAleatorio(v, n, maxElementVet);
 
   // selection sort
   for (i = 0; i < n - 1; i++) {
@@ -85,7 +82,7 @@ void vetorOrdemCrescente(int v[]) {
 }
 
 void vetorOrdemDecrescente(int v[]) {
-  int i, j, maxValueVet, max_ind;
+  int i, j, maxElementVet, max_ind;
 
   system("cls");
 
@@ -93,9 +90,9 @@ void vetorOrdemDecrescente(int v[]) {
   scanf("%d", &n);
 
   printf("Valor maximo que sera gerado: ");
-  scanf("%d", &maxValueVet);
+  scanf("%d", &maxElementVet);
 
-  gerarVetorAleatorio(v, n, maxValueVet);
+  gerarVetorAleatorio(v, n, maxElementVet);
 
   // selection sort
   for (i = 0; i < n; i++) {
@@ -114,7 +111,7 @@ void vetorOrdemDecrescente(int v[]) {
 }
 
 void vetOrdemParcialCrescente(int v[]) {
-  int i, j, maxValueVet, min_ind, aleatorio;
+  int i, j, maxElementVet, min_ind, aleatorio;
 
   system("cls");
 
@@ -122,9 +119,9 @@ void vetOrdemParcialCrescente(int v[]) {
   scanf("%d", &n);
 
   printf("Valor maximo que sera gerado: ");
-  scanf("%d", &maxValueVet);
+  scanf("%d", &maxElementVet);
 
-  gerarVetorAleatorio(v, n, maxValueVet);
+  gerarVetorAleatorio(v, n, maxElementVet);
 
   // selection sort
   for (i = 0; i < n; i++) {
@@ -144,6 +141,9 @@ void vetOrdemParcialCrescente(int v[]) {
 }
 
 int main() {
+  int v[MAX_SIZE]; // vetor
+  int n;           // numero de elementos
+  
   srand(time(NULL));
 
   char op;
