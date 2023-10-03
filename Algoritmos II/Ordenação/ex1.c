@@ -37,7 +37,7 @@ void printVetor(int v[], int n) {
   printf("\n");
 }
 
-void vetorOndemAleatoria(int v[]) {
+void vetorOndemAleatoria(int v[], int n) {
   int i, maxElementVet;
 
   system("cls");
@@ -55,7 +55,7 @@ void vetorOndemAleatoria(int v[]) {
   getch();
 }
 
-void vetorOrdemCrescente(int v[]) {
+void vetorOrdemCrescente(int v[], int n) {
   int i, j, min_ind, maxElementVet;
 
   system("cls");
@@ -84,7 +84,7 @@ void vetorOrdemCrescente(int v[]) {
   getch();
 }
 
-void vetorOrdemDecrescente(int v[]) {
+void vetorOrdemDecrescente(int v[], int n) {
   int i, j, maxElementVet, max_ind;
 
   system("cls");
@@ -113,7 +113,7 @@ void vetorOrdemDecrescente(int v[]) {
   getch();
 }
 
-void vetOrdemParcialCrescente(int v[]) {
+void vetOrdemParcialCrescente(int v[], int n) {
   int i, j, maxElementVet, min_ind, aleatorio;
 
   system("cls");
@@ -161,19 +161,19 @@ int main() {
 
     switch (op) {
     case '1':
-      vetorOndemAleatoria(v);
+      vetorOndemAleatoria(v, n);
       break;
 
     case '2':
-      vetorOrdemCrescente(v);
+      vetorOrdemCrescente(v, n);
       break;
 
     case '3':
-      vetorOrdemDecrescente(v);
+      vetorOrdemDecrescente(v, n);
       break;
 
     case '4':
-      vetOrdemParcialCrescente(v);
+      vetOrdemParcialCrescente(v, n);
       break;
     }
   } while (op != esc);
