@@ -6,6 +6,9 @@
 #define esc 27
 #define MAX_SIZE 1000
 
+  int v[MAX_SIZE]; // vetor
+  int n;           // numero de elementos
+
 void troca(int *x, int *y) {
   int temp = *x;
   *x = *y;
@@ -141,8 +144,6 @@ void vetOrdemParcialCrescente(int v[]) {
 }
 
 int main() {
-  int v[MAX_SIZE]; // vetor
-  int n;           // numero de elementos
   
   srand(time(NULL));
 
