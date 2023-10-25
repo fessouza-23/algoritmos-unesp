@@ -3,7 +3,8 @@
         "math.h": "c",
         "random": "c",
         "stdlib.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "conio.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
