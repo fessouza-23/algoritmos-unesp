@@ -45,21 +45,18 @@ void binario_octal() {
   printf("Digite um numero binario: ");
   scanf("%s", binario);
 
-  // Validando se é um número binário
   for (i = 0; binario[i] != '\0'; i++) {
     if (binario[i] != '0' && binario[i] != '1') {
       printf("Erro: O numero digitado nao eh binario.\n");
-      system("pause");
+      getch();
       return;
     }
   }
 
-  // Convertendo binário para decimal
   for (i = 0; binario[i] != '\0'; i++) {
     decimal = decimal * 2 + (binario[i] - '0');
   }
 
-  // Convertendo decimal para octal
   i = 1;
   while (decimal != 0) {
     resto = decimal % 8;
@@ -69,7 +66,7 @@ void binario_octal() {
   }
 
   printf("O numero binario %s em octal eh %d.\n", binario, octal);
-  system("pause");
+  getch();
 }
 
 void binario_decimal() {
@@ -90,20 +87,20 @@ void binario_decimal() {
   printf("Digite um numero binario: ");
   scanf("%s", binario);
 
-  // Validando se é um número binário
   for (i = 0; binario[i] != '\0'; i++) {
     if (binario[i] != '0' && binario[i] != '1') {
       printf("Erro: O numero digitado nao eh binario.\n");
+      getch();
+      return;
     }
   }
 
-  // Convertendo binário para decimal
   for (i = 0; binario[i] != '\0'; i++) {
     decimal = decimal * 2 + (binario[i] - '0');
   }
 
   printf("O numero binario %s em decimal eh %d.\n", binario, decimal);
-  system("pause");
+  getch();
 }
 
 void binario_hexadecimal() {
@@ -126,20 +123,18 @@ void binario_hexadecimal() {
   printf("Digite um numero binario: ");
   scanf("%s", binario);
 
-  // Validando se é um número binário
   for (i = 0; binario[i] != '\0'; i++) {
     if (binario[i] != '0' && binario[i] != '1') {
       printf("Erro: O numero digitado nao eh binario.\n");
-      return; // added return statement to exit the function
+      getch();
+      return;
     }
   }
 
-  // Convertendo binário para decimal
   for (i = 0; binario[i] != '\0'; i++) {
     decimal = decimal * 2 + (binario[i] - '0');
   }
 
-  // Convertendo decimal para hexadecimal
   while (decimal != 0) {
     resto = decimal % 16;
     if (resto < 10) {
@@ -163,7 +158,7 @@ void binario_hexadecimal() {
   }
 
   printf("O numero binario %s em hexadecimal eh %s.\n", binario, hexadecimal);
-  system("pause");
+  getch();
 }
 
 void octal_binario() {
@@ -188,6 +183,7 @@ void octal_binario() {
   for (i = 0; octal[i] != '\0'; i++) {
     if (octal[i] < '0' || octal[i] > '7') {
       printf("Erro: O numero digitado nao eh octal.\n");
+      getch();
       return;
     }
   }
@@ -239,7 +235,7 @@ void octal_binario() {
   binary[j] = '\0';
 
   printf("O numero octal %s em binario eh %s.\n", octal, binary);
-  system("pause");
+  getch();
 }
 
 void octal_decimal() {
@@ -264,6 +260,7 @@ void octal_decimal() {
   for (i = 0; octal[i] != '\0'; i++) {
     if (octal[i] < '0' || octal[i] > '7') {
       printf("Erro: O numero digitado nao eh octal.\n");
+      getch();
       return;
     }
   }
@@ -273,7 +270,7 @@ void octal_decimal() {
   }
 
   printf("O numero octal %s em decimal eh %d.\n", octal, decimal);
-  system("pause");
+  getch();
 }
 
 void octal_hexadecimal() {
@@ -299,6 +296,7 @@ void octal_hexadecimal() {
   for (i = 0; octal[i] != '\0'; i++) {
     if (octal[i] < '0' || octal[i] > '7') {
       printf("Erro: O numero digitado nao eh octal.\n");
+      getch();
       return;
     }
   }
@@ -329,7 +327,7 @@ void octal_hexadecimal() {
   }
 
   printf("O numero octal %s em hexadecimal eh %s.\n", octal, hexadecimal);
-  system("pause");
+  getch();
 }
 
 bool isDecimal(const char *number) {
@@ -363,7 +361,7 @@ void decimal_binario() {
 
   if (!isDecimal(decimal)) {
     printf("Erro: O numero digitado nao eh decimal.\n");
-    system("pause");
+    getch();
     return;
   }
 
@@ -391,7 +389,7 @@ void decimal_binario() {
   }
 
   printf("O numero decimal %s em binario eh %s.\n", decimal, binary);
-  system("pause");
+  getch();
 }
 
 void decimal_octal() {
@@ -415,7 +413,7 @@ void decimal_octal() {
 
   if (!isDecimal(decimal)) {
     printf("Erro: O numero digitado nao eh decimal.\n");
-    system("pause");
+    getch();
     return;
   }
 
@@ -443,7 +441,7 @@ void decimal_octal() {
   }
 
   printf("O numero decimal %s em octal eh %s.\n", decimal, octal);
-  system("pause");
+  getch();
 }
 
 void decimal_hexadecimal() {
@@ -467,7 +465,7 @@ void decimal_hexadecimal() {
 
   if (!isDecimal(decimal)) {
     printf("Erro: O numero digitado nao eh decimal.\n");
-    system("pause");
+    getch();
     return;
   }
 
@@ -500,7 +498,7 @@ void decimal_hexadecimal() {
   }
 
   printf("O numero decimal %s em hexadecimal eh %s.\n", decimal, hexadecimal);
-  system("pause");
+  getch();
 }
 
 int isHexadecimal(char *hexadecimal) {
@@ -535,7 +533,7 @@ void hexadecimal_binario() {
 
   if (!isHexadecimal(hexadecimal)) {
     printf("Erro: O numero digitado nao eh hexadecimal.\n");
-    system("pause");
+    getch();
     return;
   }
 
@@ -559,7 +557,7 @@ void hexadecimal_binario() {
   }
 
   printf("O numero hexadecimal %s em binario eh %s.\n", hexadecimal, binario);
-  system("pause");
+  getch();
 }
 
 void hexadecimal_octal() {
@@ -576,6 +574,7 @@ void hexadecimal_octal() {
   // Validando se é um número hexadecimal válido
   if (!isHexadecimal(hexadecimal)) {
     printf("Erro: O numero digitado nao eh hexadecimal.\n");
+    getch();
     return;
   }
 
@@ -615,7 +614,7 @@ void hexadecimal_octal() {
   }
 
   printf("\n");
-  system("pause");
+  getch();
 }
 
 void hexadecimal_decimal() {
@@ -638,7 +637,7 @@ void hexadecimal_decimal() {
 
   if (!isHexadecimal(hexadecimal)) {
     printf("Erro: O numero digitado nao eh hexadecimal.\n");
-    system("pause");
+    getch();
     return;
   }
 
@@ -657,7 +656,7 @@ void hexadecimal_decimal() {
   }
 
   printf("O numero hexadecimal %s em decimal eh %d.\n", hexadecimal, decimal);
-  system("pause");
+  getch();
 }
 
 void menuBinario() {
