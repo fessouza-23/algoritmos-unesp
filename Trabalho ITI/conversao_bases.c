@@ -27,6 +27,19 @@ void bem_vindo() {
   getch();
 }
 
+void sobre() {
+  system("cls");
+  printf("\e[?25l");
+  printf("================================  SOBRE O PROGRAMA  "
+         "=======================================\n");
+  printf("Conversor de Bases\n");
+  printf("Desenvolvido por Joao Victor Fernandes Souza\n");
+  printf("Introducao a Tecnologia da Informacao - BSI 023 - 2 Periodo\n");
+  printf("Versao: 1.0\n");
+  printf("Data de compilacao: %s, %s\n\n", __DATE__, __TIME__);
+  system("pause");
+}
+
 void binario_octal() {
   char binario[100];
   int decimal = 0, octal = 0, i = 0, resto;
@@ -566,7 +579,14 @@ void hexadecimal_octal() {
 
   system("cls");
 
-  printf("HEXADECIMAL PARA OCTAL\n\n");
+  setCorTexto(10); // magenta
+  printf("HEXADECIMAL ");
+  setCorTexto(15); // branco
+  printf("PARA ");
+  setCorTexto(12); // azul
+  printf("DECIMAL\n\n");
+
+  setCorTexto(15); // branco
 
   printf("Digite um numero hexadecimal: ");
   scanf("%s", hexadecimal);
@@ -600,6 +620,7 @@ void hexadecimal_octal() {
     strcat(octal, hexToBin[decimal]);
   }
 
+  printf("O numero hexadecimal %s em decimal eh ", hexadecimal);
   // Convertendo binário para octal
   length = strlen(octal);
   int octalDigit = 0;
@@ -613,7 +634,7 @@ void hexadecimal_octal() {
     printf("%d", octalDigit);
   }
 
-  printf("\n");
+  printf(".\n");
   getch();
 }
 
@@ -833,12 +854,10 @@ void menu() {
       break;
 
     case esc:
-      printf("\nSaindo do programa...\n\n");
-      system("pause");
       break;
 
     case f1:
-      // sobre();
+      sobre();
       break;
 
     default:
