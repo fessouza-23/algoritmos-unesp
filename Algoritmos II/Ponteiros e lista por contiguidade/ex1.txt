@@ -1,0 +1,7 @@
+
+    int i=7, j=5; -> declara duas variáveis inteiras, i e j, e inicializam-nas com os valores 7 e 5, respectivamente.
+    *int p; -> declara um ponteiro para inteiro chamado p.
+    **int q; -> declara um ponteiro para ponteiro para inteiro chamado q.
+    p = &i; -> inicializa o ponteiro p com o endereço de memória da variável i.
+    q = &p; -> inicializa o ponteiro para ponteiro q com o endereço de memória do ponteiro p.
+    **int c = q + j; -> inicializa a variável c com o valor **q + j. **q representa o valor apontado por q que é o conteúdo de p, que por sua vez é o endereço de i. Portanto, **q é equivalente a *p, que é o valor de i, ou seja, 7. Então, c é inicializado com 7 + 5, o que resulta em c sendo igual a 12.
