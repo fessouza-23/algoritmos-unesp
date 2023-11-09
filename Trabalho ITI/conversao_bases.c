@@ -5,13 +5,13 @@
 */
 
 #include <conio.h>
-#include <ctype.h>
-#include <stdbool.h>
+#include <stdbool.h> // Utilizado para o tipo de dados bool
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
 
+// Constantes
 #define esc 27
 #define f1 0
 
@@ -868,14 +868,30 @@ void menuBinario() {
 
   do {
     system("cls");
-    printf("\e[?25l");
-    printf("================================  MENU BINARIO  "
-           "=======================================\n");
+    printf("\e[?25l"); // Oculta o cursor
+    printf("================================  ");
+    setCorTexto(10);
+    printf("MENU BINARIO");
+    setCorTexto(15);
+    printf("  ================================\n");
     printf("Da base binaria, para qual base deseja converter?\n");
-    printf("|ESC - Voltar |\n");
-    printf("1 - Octal\n");
-    printf("2 - Decimal\n");
-    printf("3 - Hexadecimal\n");
+    setCorTexto(2);
+    printf("1. ");
+    setCorTexto(15);
+    printf("Octal\n");
+    setCorTexto(2);
+    printf("2. ");
+    setCorTexto(15);
+    printf("Decimal\n");
+    setCorTexto(2);
+    printf("3. ");
+    setCorTexto(15);
+    printf("Hexadecimal\n");
+    printf("| ");
+    setCorTexto(2);
+    printf("ESC ");
+    setCorTexto(15);
+    printf("- Voltar | ");
     op = getch();
 
     switch (op) {
@@ -904,13 +920,30 @@ void menuOctal() {
   do {
     system("cls");
     printf("\e[?25l");
-    printf("================================  MENU OCTAL  "
-           "=======================================\n");
+    printf("================================  ");
+    setCorTexto(9);
+    printf("MENU OCTAL");
+    setCorTexto(15);
+    printf("  ================================\n");
     printf("Da base octal, para qual base deseja converter?\n");
-    printf("|ESC - Voltar |\n");
-    printf("1 - Binario\n");
-    printf("2 - Decimal\n");
-    printf("3 - Hexadecimal\n");
+    setCorTexto(9);
+    printf("1. ");
+    setCorTexto(15);
+    printf("Binario\n");
+    setCorTexto(9);
+    printf("2. ");
+    setCorTexto(15);
+    printf("Decimal\n");
+    setCorTexto(9);
+    printf("3. ");
+    setCorTexto(15);
+    printf("Hexadecimal\n");
+    setCorTexto(15);
+    printf("| ");
+    setCorTexto(9);
+    printf("ESC ");
+    setCorTexto(15);
+    printf("- Voltar |\n");
     op = getch();
 
     switch (op) {
@@ -938,14 +971,31 @@ void menuDecimal() {
 
   do {
     system("cls");
-    printf("\e[?25l");
-    printf("================================  MENU DECIMAL  "
-           "=======================================\n");
+    printf("\e[?25l"); // Oculta o cursor
+    printf("================================  ");
+    setCorTexto(12);
+    printf("MENU DECIMAL");
+    setCorTexto(15);
+    printf("  ================================\n");
     printf("Da base decimal, para qual base deseja converter?\n");
-    printf("|ESC - Voltar |\n");
-    printf("1 - Binario\n");
-    printf("2 - Octal\n");
-    printf("3 - Hexadecimal\n");
+    setCorTexto(12);
+    printf("1. ");
+    setCorTexto(15);
+    printf("Binario\n");
+    setCorTexto(12);
+    printf("2. ");
+    setCorTexto(15);
+    printf("Octal\n");
+    setCorTexto(12);
+    printf("3. ");
+    setCorTexto(15);
+    printf("Hexadecimal\n");
+    setCorTexto(15);
+    printf("| ");
+    setCorTexto(12);
+    printf("ESC ");
+    setCorTexto(15);
+    printf("- Voltar |\n");
     op = getch();
 
     switch (op) {
@@ -974,13 +1024,30 @@ void menuHexadecimal() {
   do {
     system("cls");
     printf("\e[?25l");
-    printf("================================  MENU HEXADECIMAL  "
-           "=======================================\n");
+    printf("================================  ");
+    setCorTexto(13);
+    printf("MENU HEXADECIMAL");
+    setCorTexto(15);
+    printf("  ================================\n");
     printf("Da base hexadecimal, para qual base deseja converter?\n");
-    printf("|ESC - Voltar |\n");
-    printf("1 - Binario\n");
-    printf("2 - Octal\n");
-    printf("3 - Decimal\n");
+    setCorTexto(13);
+    printf("1. ");
+    setCorTexto(15);
+    printf("Binario\n");
+    setCorTexto(13);
+    printf("2. ");
+    setCorTexto(15);
+    printf("Octal\n");
+    setCorTexto(13);
+    printf("3. ");
+    setCorTexto(15);
+    printf("Decimal\n");
+    setCorTexto(15);
+    printf("| ");
+    setCorTexto(13);
+    printf("ESC ");
+    setCorTexto(15);
+    printf("- Voltar |\n");
     op = getch();
 
     switch (op) {
