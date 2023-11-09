@@ -20,47 +20,89 @@ void setCorTexto(int cor) {
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), cor);
 }
 
-void bem_vindo() {
-    system("cls");
+void exibirMenu(char *opcoes[], int quantidadeOpcoes) {
+  system("cls");
+  printf("\e[?25l"); // Oculta o cursor
+  printf("================================  ");
+  setCorTexto(14); // Amarelo
+  printf("MENU");
+  setCorTexto(15); // Branco
+  printf("  ================================\n");
+  for (int i = 0; i < quantidadeOpcoes; i++) {
     setCorTexto(14); // Amarelo
-    printf("********************************************\n");
-    printf("*                                          *\n");
-    printf("*  Bem vindo ao Conversor de Bases!        *\n");
-    printf("*                                          *\n");
-    printf("*  Programa desenvolvido por               *\n");
-    printf("*  Joao Victor Fernandes Souza             *\n");
-    printf("*                                          *\n");
-    printf("*  Introducao a Tecnologia da Informacao   *\n");
-    printf("*  BSI 023 - 2 Periodo                     *\n");
-    printf("*                                          *\n");
-    printf("********************************************\n");
+    printf("%d. ", i + 1);
     setCorTexto(15); // Branco (restaura a cor padrão)
-    getch();
+    printf("%s\n", opcoes[i]);
+  }
+  printf("| ");
+  setCorTexto(14); // Amarelo
+  printf("ESC ");
+  setCorTexto(15); // Branco
+  printf("- Sair | ");
+  setCorTexto(14); // Amarelo
+  printf("F1 ");
+  setCorTexto(15); // Branco
+  printf("- Sobre o Programa |\n");
+}
+
+void bem_vindo() {
+  system("cls");
+  setCorTexto(14); // Amarelo
+  printf("********************************************\n");
+  printf("*                                          *\n");
+  printf("*  Bem vindo ao Conversor de Bases!        *\n");
+  printf("*                                          *\n");
+  printf("*  Programa desenvolvido por               *\n");
+  printf("*  Joao Victor Fernandes Souza             *\n");
+  printf("*                                          *\n");
+  printf("*  Introducao a Tecnologia da Informacao   *\n");
+  printf("*  BSI 023 - 2 Periodo                     *\n");
+  printf("*                                          *\n");
+  printf("********************************************\n");
+  setCorTexto(15); // Branco (restaura a cor padrão)
+  getch();
 }
 
 void sobre() {
-    system("cls");
-    setCorTexto(11); // Ciano
-    printf("====================================================================================\n");
-    setCorTexto(14); // Amarelo
-    printf("                     SOBRE O CONVERSOR DE BASES                          \n");
-    setCorTexto(11); // Ciano
-    printf("====================================================================================\n\n");
-    setCorTexto(15); // Branco
+  system("cls");
+  printf("====================================================================="
+         "===============\n");
+  setCorTexto(14); // Amarelo
+  printf("                     SOBRE O CONVERSOR DE BASES                      "
+         "    \n");
+  setCorTexto(15); // Branco
+  printf("====================================================================="
+         "===============\n\n");
 
-    printf("O Conversor de Bases eh uma aplicacao desenvolvida por Joao Victor Fernandes Souza, \n");
-    printf("como parte do curso de Introducao a Tecnologia da Informacao (BSI 023 - 2 Periodo).\n");
-    printf("Esta aplicacao permite a conversao entre diferentes bases numericas, incluindo \n");
-    printf("binario, octal, decimal e hexadecimal.\n\n");
+  printf("O Conversor de Bases eh uma aplicacao desenvolvida por Joao Victor "
+         "Fernandes Souza, \n");
+  printf("como parte do curso de Introducao a Tecnologia da Informacao (BSI "
+         "023 - 2 Periodo).\n");
+  printf("Esta aplicacao permite a conversao entre diferentes bases numericas, "
+         "incluindo \n");
+  printf("binario, octal, decimal e hexadecimal.\n\n");
 
-    setCorTexto(10); // Verde
-    printf("Versao: 1.0\n");
-    printf("Data de Compilacao: %s, %s\n\n", __DATE__, __TIME__);
-    setCorTexto(15); // Branco
+  setCorTexto(10); // Verde
+  printf("Versao: 1.0\n");
+  printf("Data de Compilacao: %s, %s\n\n", __DATE__, __TIME__);
+  setCorTexto(15); // Branco
 
-    printf("====================================================================================\n\n");
-    setCorTexto(15); // Branco
-    system("pause");
+  printf("====================================================================="
+         "===============\n\n");
+  setCorTexto(15); // Branco
+  system("pause");
+}
+
+void despedida() {
+  system("cls");   // Limpa a tela antes de exibir a mensagem de despedida
+  setCorTexto(10); // Verde
+  printf("==========================================================\n");
+  setCorTexto(15); // Branco
+  printf("  Obrigado por usar o Conversor de Bases. Ate logo!\n");
+  setCorTexto(10); // Verde
+  printf("==========================================================\n");
+  setCorTexto(15); // Branco
+  system("pause");
 }
 
 // Funções de verificação
@@ -711,19 +753,18 @@ void hexadecimal_octal() {
 
   system("cls");
 
-  setCorTexto(10); // magenta
+  setCorTexto(10); // Verde
   printf("HEXADECIMAL ");
-  setCorTexto(15); // branco
+  setCorTexto(15); // Branco
   printf("PARA ");
-  setCorTexto(12); // azul
-  printf("DECIMAL\n\n");
+  setCorTexto(12); // Azul
+  printf("OCTAL\n\n");
 
-  setCorTexto(15); // branco
+  setCorTexto(15); // Branco
 
   printf("Digite um numero hexadecimal: ");
   scanf("%s", hexadecimal);
 
-  // Validando se é um número hexadecimal válido
   if (!isHexadecimal(hexadecimal)) {
     printf("Erro: O numero digitado nao eh hexadecimal.\n");
     getch();
@@ -736,7 +777,6 @@ void hexadecimal_octal() {
   for (i = length - 1; i >= 0; i--) {
     int decimal = 0;
 
-    // Convertendo dígito hexadecimal para decimal
     if (hexadecimal[i] >= '0' && hexadecimal[i] <= '9') {
       decimal = hexadecimal[i] - '0';
     } else if (hexadecimal[i] >= 'A' && hexadecimal[i] <= 'F') {
@@ -767,8 +807,12 @@ void hexadecimal_octal() {
   }
 
   printf("O numero hexadecimal %s em octal eh: ", hexadecimal);
-  for (int k = start; k < j; k++) {
-    printf("%c", octal[k]);
+  if (start == j) {
+    printf("0"); // Caso especial para hexadecimal "0"
+  } else {
+    for (int k = start; k < j; k++) {
+      printf("%c", octal[k]);
+    }
   }
   printf("\n");
   getch();
@@ -959,20 +1003,14 @@ void menuHexadecimal() {
   } while (op != esc);
 }
 
-void menu() {
-  char op;
+int main() {
+  bem_vindo();
+  char *opcoesMenu[] = {"Binario", "Octal", "Decimal", "Hexadecimal"};
+  int quantidadeOpcoes = sizeof(opcoesMenu) / sizeof(opcoesMenu[0]);
 
+  char op;
   do {
-    system("cls");
-    printf("\e[?25l");
-    printf("================================  MENU  "
-           "=======================================\n");
-    printf("De qual base deseja converter?\n");
-    printf("|ESC - Sair | F1 - Sobre o Programa|\n");
-    printf("1. Binario\n");
-    printf("2. Octal\n");
-    printf("3. Decimal\n");
-    printf("4. Hexadecimal\n");
+    exibirMenu(opcoesMenu, quantidadeOpcoes);
     op = getch();
 
     switch (op) {
@@ -1003,9 +1041,8 @@ void menu() {
       break;
     }
   } while (op != esc);
-}
 
-int main() {
-  bem_vindo();
-  menu();
+  despedida(); // Chamando a função de despedida antes de sair do programa
+
+  return 0;
 }
