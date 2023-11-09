@@ -1,3 +1,9 @@
+/*
+    Programa de conversão de bases
+    Desenvolvido por Joao Victor Fernandes - RA: 231024967
+    Introducao a Tecnologia da Informacao - BSI 2023 - 2 Periodo
+*/
+
 #include <conio.h>
 #include <ctype.h>
 #include <stdbool.h>
@@ -9,85 +15,156 @@
 #define esc 27
 #define f1 0
 
-/*
-    Programa de conversão de bases
-    Desenvolvido por Joao Victor Fernandes - RA: 231024967
-    Introducao a Tecnologia da Informacao - BSI 2023 - 2 Periodo
-*/
-
+// Função para alterar a cor do texto
 void setCorTexto(int cor) {
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), cor);
 }
 
 void bem_vindo() {
-  system("cls");
-  printf("Bem vindo ao conversor de bases!\n"
-         "Programa desenvolvido por Joao Victor Fernandes Souza\n"
-         "Introducao a Tecnologia da Informacao - BSI 023 - 2 Periodo\n");
-  getch();
+    system("cls");
+    setCorTexto(14); // Amarelo
+    printf("********************************************\n");
+    printf("*                                          *\n");
+    printf("*  Bem vindo ao Conversor de Bases!        *\n");
+    printf("*                                          *\n");
+    printf("*  Programa desenvolvido por               *\n");
+    printf("*  Joao Victor Fernandes Souza             *\n");
+    printf("*                                          *\n");
+    printf("*  Introducao a Tecnologia da Informacao   *\n");
+    printf("*  BSI 023 - 2 Periodo                     *\n");
+    printf("*                                          *\n");
+    printf("********************************************\n");
+    setCorTexto(15); // Branco (restaura a cor padrão)
+    getch();
 }
 
 void sobre() {
-  system("cls");
-  printf("\e[?25l");
-  printf("================================  SOBRE O PROGRAMA  "
-         "=======================================\n");
-  printf("Conversor de Bases\n");
-  printf("Desenvolvido por Joao Victor Fernandes Souza\n");
-  printf("Introducao a Tecnologia da Informacao - BSI 023 - 2 Periodo\n");
-  printf("Versao: 1.0\n");
-  printf("Data de compilacao: %s, %s\n\n", __DATE__, __TIME__);
-  system("pause");
+    system("cls");
+    setCorTexto(11); // Ciano
+    printf("====================================================================================\n");
+    setCorTexto(14); // Amarelo
+    printf("                     SOBRE O CONVERSOR DE BASES                          \n");
+    setCorTexto(11); // Ciano
+    printf("====================================================================================\n\n");
+    setCorTexto(15); // Branco
+
+    printf("O Conversor de Bases eh uma aplicacao desenvolvida por Joao Victor Fernandes Souza, \n");
+    printf("como parte do curso de Introducao a Tecnologia da Informacao (BSI 023 - 2 Periodo).\n");
+    printf("Esta aplicacao permite a conversao entre diferentes bases numericas, incluindo \n");
+    printf("binario, octal, decimal e hexadecimal.\n\n");
+
+    setCorTexto(10); // Verde
+    printf("Versao: 1.0\n");
+    printf("Data de Compilacao: %s, %s\n\n", __DATE__, __TIME__);
+    setCorTexto(15); // Branco
+
+    printf("====================================================================================\n\n");
+    setCorTexto(15); // Branco
+    system("pause");
 }
 
+// Funções de verificação
+bool isBinario(const char *number) {
+  int length = strlen(number);
+  for (int i = 0; i < length; i++) {
+    if (number[i] != '0' && number[i] != '1') {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool isDecimal(const char *number) {
+  int length = strlen(number);
+  for (int i = 0; i < length; i++) {
+    if (number[i] < '0' || number[i] > '9') {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool isOctal(const char *number) {
+  int length = strlen(number);
+  for (int i = 0; i < length; i++) {
+    if (number[i] < '0' || number[i] > '7') {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool isHexadecimal(const char *number) {
+  int length = strlen(number);
+  for (int i = 0; i < length; i++) {
+    if (!((number[i] >= '0' && number[i] <= '9') ||
+          (number[i] >= 'A' && number[i] <= 'F') ||
+          (number[i] >= 'a' && number[i] <= 'f'))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Funções de conversão
 void binario_octal() {
   char binario[100];
-  int decimal = 0, octal = 0, i = 0, resto;
 
   system("cls");
 
+  // Cor do Texto de Titulo
   setCorTexto(11); // azul claro
   printf("BINARIO ");
-  setCorTexto(15); // branco (6 tbm eh branco)
+  setCorTexto(15); // branco
   printf("PARA ");
   setCorTexto(13); // rosa
   printf("OCTAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero binario: ");
   scanf("%s", binario);
 
-  for (i = 0; binario[i] != '\0'; i++) {
-    if (binario[i] != '0' && binario[i] != '1') {
-      printf("Erro: O numero digitado nao eh binario.\n");
-      getch();
-      return;
+  if (!isBinario(binario)) {
+    printf("Erro: O numero digitado nao eh binario.\n");
+    getch();
+    return;
+  }
+
+  int length = strlen(binario);
+  int zeros_padding = length % 3;
+
+  // Adiciona zeros à esquerda para tornar o número binário múltiplo de 3
+  if (zeros_padding > 0) {
+    zeros_padding = 3 - zeros_padding;
+    length += zeros_padding;
+    memmove(binario + zeros_padding, binario, strlen(binario) + 1);
+    memset(binario, '0', zeros_padding);
+  }
+
+  printf("O numero binario %s em octal eh: ", binario);
+
+  // Converte grupos de 3 dígitos binários para octal
+  for (int i = 0; i < length; i += 3) {
+    int grupo = 0;
+    for (int j = 0; j < 3; j++) {
+      grupo = grupo * 2 + (binario[i + j] - '0');
     }
+    printf("%d", grupo);
   }
 
-  for (i = 0; binario[i] != '\0'; i++) {
-    decimal = decimal * 2 + (binario[i] - '0');
-  }
-
-  i = 1;
-  while (decimal != 0) {
-    resto = decimal % 8;
-    octal += resto * i;
-    decimal /= 8;
-    i *= 10;
-  }
-
-  printf("O numero binario %s em octal eh %d.\n", binario, octal);
+  printf("\n");
   getch();
 }
 
 void binario_decimal() {
   char binario[100];
-  int decimal = 0, i = 0, resto;
+  int decimal = 0;
 
   system("cls");
 
+  // Cor do Texto de Titulo
   setCorTexto(11); // azul claro
   printf("BINARIO ");
   setCorTexto(15); // branco
@@ -95,20 +172,20 @@ void binario_decimal() {
   setCorTexto(13); // rosa
   printf("DECIMAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero binario: ");
   scanf("%s", binario);
 
-  for (i = 0; binario[i] != '\0'; i++) {
-    if (binario[i] != '0' && binario[i] != '1') {
-      printf("Erro: O numero digitado nao eh binario.\n");
-      getch();
-      return;
-    }
+  if (!isBinario(binario)) {
+    printf("Erro: O numero digitado nao eh binario.\n");
+    getch();
+    return;
   }
 
-  for (i = 0; binario[i] != '\0'; i++) {
+  // Converte o número binário para decimal
+  for (int i = 0; binario[i] != '\0'; i++) {
     decimal = decimal * 2 + (binario[i] - '0');
   }
 
@@ -118,12 +195,12 @@ void binario_decimal() {
 
 void binario_hexadecimal() {
   char binario[100];
-  int decimal = 0, i = 0, resto;
   char hexadecimal[100];
-  int index = 0;
+  int length, index = 0;
 
   system("cls");
 
+  // Cor do Texto de Titulo
   setCorTexto(11); // azul claro
   printf("BINARIO ");
   setCorTexto(15); // branco
@@ -131,44 +208,41 @@ void binario_hexadecimal() {
   setCorTexto(13); // rosa
   printf("HEXADECIMAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero binario: ");
   scanf("%s", binario);
 
-  for (i = 0; binario[i] != '\0'; i++) {
-    if (binario[i] != '0' && binario[i] != '1') {
-      printf("Erro: O numero digitado nao eh binario.\n");
-      getch();
-      return;
+  if (!isBinario(binario)) {
+    printf("Erro: O numero digitado nao eh binario.\n");
+    getch();
+    return;
+  }
+
+  // Adiciona zeros à esquerda para tornar o número binário múltiplo de 4
+  length = strlen(binario);
+  int zeros_padding = length % 4;
+  if (zeros_padding > 0) {
+    zeros_padding = 4 - zeros_padding;
+    length += zeros_padding;
+    memmove(binario + zeros_padding, binario, strlen(binario) + 1);
+    memset(binario, '0', zeros_padding);
+  }
+
+  // Converte grupos de 4 dígitos binários para hexadecimal
+  for (int i = 0; i < length; i += 4) {
+    int grupo = 0;
+    for (int j = 0; j < 4; j++) {
+      grupo = grupo * 2 + (binario[i + j] - '0');
     }
-  }
-
-  for (i = 0; binario[i] != '\0'; i++) {
-    decimal = decimal * 2 + (binario[i] - '0');
-  }
-
-  while (decimal != 0) {
-    resto = decimal % 16;
-    if (resto < 10) {
-      hexadecimal[index] = resto + '0';
+    if (grupo < 10) {
+      hexadecimal[index++] = grupo + '0';
     } else {
-      hexadecimal[index] = resto + 'A' - 10;
+      hexadecimal[index++] = grupo - 10 + 'A';
     }
-    index++;
-    decimal /= 16;
   }
   hexadecimal[index] = '\0';
-
-  int start = 0;
-  int end = index - 1;
-  while (start < end) {
-    char temp = hexadecimal[start];
-    hexadecimal[start] = hexadecimal[end];
-    hexadecimal[end] = temp;
-    start++;
-    end--;
-  }
 
   printf("O numero binario %s em hexadecimal eh %s.\n", binario, hexadecimal);
   getch();
@@ -176,11 +250,12 @@ void binario_hexadecimal() {
 
 void octal_binario() {
   char octal[100];
-  char binary[100];
-  int i, j;
+  char binary[400]; // Pode haver até 3 bits para cada dígito octal
+  int i, j = 0;
 
   system("cls");
 
+  // Cor do Texto de Titulo
   setCorTexto(10); // verde
   printf("OCTAL ");
   setCorTexto(15); // branco
@@ -188,20 +263,20 @@ void octal_binario() {
   setCorTexto(14); // amarelo
   printf("BINARIO\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero octal: ");
   scanf("%s", octal);
 
-  for (i = 0; octal[i] != '\0'; i++) {
-    if (octal[i] < '0' || octal[i] > '7') {
-      printf("Erro: O numero digitado nao eh octal.\n");
-      getch();
-      return;
-    }
+  if (!isOctal(octal)) {
+    printf("Erro: O numero digitado nao eh octal.\n");
+    getch();
+    return;
   }
 
-  for (i = 0, j = 0; octal[i] != '\0'; i++, j += 3) {
+  // Converte cada dígito octal para 3 bits binários
+  for (i = 0; octal[i] != '\0'; i++) {
     switch (octal[i]) {
     case '0':
       binary[j] = '0';
@@ -244,6 +319,7 @@ void octal_binario() {
       binary[j + 2] = '1';
       break;
     }
+    j += 3;
   }
   binary[j] = '\0';
 
@@ -258,6 +334,7 @@ void octal_decimal() {
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(10); // verde
   printf("OCTAL ");
   setCorTexto(15); // branco
@@ -265,19 +342,19 @@ void octal_decimal() {
   setCorTexto(12); // azul
   printf("DECIMAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero octal: ");
   scanf("%s", octal);
 
-  for (i = 0; octal[i] != '\0'; i++) {
-    if (octal[i] < '0' || octal[i] > '7') {
-      printf("Erro: O numero digitado nao eh octal.\n");
-      getch();
-      return;
-    }
+  if (!isOctal(octal)) {
+    printf("Erro: O numero digitado nao eh octal.\n");
+    getch();
+    return;
   }
 
+  // Converte o número octal para decimal
   for (i = 0; octal[i] != '\0'; i++) {
     decimal = decimal * 8 + (octal[i] - '0');
   }
@@ -289,11 +366,11 @@ void octal_decimal() {
 void octal_hexadecimal() {
   char octal[100];
   char hexadecimal[100];
-  int decimal = 0;
   int i, j = 0;
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(10); // verde
   printf("OCTAL ");
   setCorTexto(15); // branco
@@ -301,36 +378,43 @@ void octal_hexadecimal() {
   setCorTexto(13); // rosa
   printf("HEXADECIMAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero octal: ");
   scanf("%s", octal);
 
-  for (i = 0; octal[i] != '\0'; i++) {
-    if (octal[i] < '0' || octal[i] > '7') {
-      printf("Erro: O numero digitado nao eh octal.\n");
-      getch();
-      return;
-    }
+  if (!isOctal(octal)) {
+    printf("Erro: O numero digitado nao eh octal.\n");
+    getch();
+    return;
   }
 
+  // Convertendo o número octal para hexadecimal diretamente
   for (i = 0; octal[i] != '\0'; i++) {
-    decimal = decimal * 8 + (octal[i] - '0');
+    int digit = octal[i] - '0';
+    j = j * 8 + digit;
   }
 
-  while (decimal != 0) {
-    int remainder = decimal % 16;
+  i = 0;
+
+  // Convertendo o valor j para hexadecimal
+  while (j != 0) {
+    int remainder = j % 16;
     if (remainder < 10) {
-      hexadecimal[j++] = remainder + '0';
+      hexadecimal[i++] = remainder + '0';
     } else {
-      hexadecimal[j++] = remainder + 'A' - 10;
+      hexadecimal[i++] = remainder - 10 + 'A';
     }
-    decimal /= 16;
+    j /= 16;
   }
-  hexadecimal[j] = '\0';
 
+  // Adicionando o caractere nulo ao final da string hexadecimal
+  hexadecimal[i] = '\0';
+
+  // Revertendo a string hexadecimal para a ordem correta
   int start = 0;
-  int end = j - 1;
+  int end = i - 1;
   while (start < end) {
     char temp = hexadecimal[start];
     hexadecimal[start] = hexadecimal[end];
@@ -343,16 +427,6 @@ void octal_hexadecimal() {
   getch();
 }
 
-bool isDecimal(const char *number) {
-  int length = strlen(number);
-  for (int i = 0; i < length; i++) {
-    if (number[i] < '0' || number[i] > '9') {
-      return false;
-    }
-  }
-  return true;
-}
-
 void decimal_binario() {
   char decimal[100];
   char binary[100];
@@ -360,6 +434,7 @@ void decimal_binario() {
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(12); // azul
   printf("DECIMAL ");
   setCorTexto(15); // branco
@@ -367,6 +442,7 @@ void decimal_binario() {
   setCorTexto(14); // amarelo
   printf("BINARIO\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero decimal: ");
@@ -379,10 +455,12 @@ void decimal_binario() {
   }
 
   int number = atoi(decimal);
+  // Se o número for zero, o binário também é zero
   if (number == 0) {
     binary[0] = '0';
     binary[1] = '\0';
   } else {
+    // Converte o número decimal para binário
     while (number != 0) {
       binary[i] = (number % 2) + '0';
       number /= 2;
@@ -391,6 +469,7 @@ void decimal_binario() {
     binary[i] = '\0';
   }
 
+  // Reverte a string binária para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -412,13 +491,15 @@ void decimal_octal() {
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(10); // verde
-  printf("HEXADECIMAL ");
+  printf("DECIMAL ");
   setCorTexto(15); // branco
   printf("PARA ");
   setCorTexto(12); // azul
   printf("OCTAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero decimal: ");
@@ -431,10 +512,13 @@ void decimal_octal() {
   }
 
   int number = atoi(decimal);
+
+  // Se o número for zero, o octal também é zero
   if (number == 0) {
     octal[0] = '0';
     octal[1] = '\0';
   } else {
+    // Converte o número decimal para octal
     while (number != 0) {
       octal[i] = (number % 8) + '0';
       number /= 8;
@@ -443,6 +527,7 @@ void decimal_octal() {
     octal[i] = '\0';
   }
 
+  // Reverte a string octal para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -464,6 +549,7 @@ void decimal_hexadecimal() {
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(12); // azul
   printf("DECIMAL ");
   setCorTexto(15); // branco
@@ -471,6 +557,7 @@ void decimal_hexadecimal() {
   setCorTexto(13); // magenta
   printf("HEXADECIMAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero decimal: ");
@@ -482,11 +569,14 @@ void decimal_hexadecimal() {
     return;
   }
 
-  int number = atoi(decimal); // converte string decimal para int
+  int number = atoi(decimal); // Converte a string decimal para int
+
+  // Se o número for zero, o hexadecimal também é zero
   if (number == 0) {
     hexadecimal[0] = '0';
     hexadecimal[1] = '\0';
   } else {
+    // Converte o número decimal para hexadecimal
     while (number != 0) {
       int remainder = number % 16;
       if (remainder < 10) {
@@ -500,6 +590,7 @@ void decimal_hexadecimal() {
     hexadecimal[i] = '\0';
   }
 
+  // Reverte a string hexadecimal para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -514,17 +605,6 @@ void decimal_hexadecimal() {
   getch();
 }
 
-int isHexadecimal(char *hexadecimal) {
-  for (int i = 0; hexadecimal[i] != '\0'; i++) {
-    if (!((hexadecimal[i] >= '0' && hexadecimal[i] <= '9') ||
-          (hexadecimal[i] >= 'A' && hexadecimal[i] <= 'F') ||
-          (hexadecimal[i] >= 'a' && hexadecimal[i] <= 'f'))) {
-      return false; // Não é um caractere hexadecimal válido
-    }
-  }
-  return true; // É um número hexadecimal válido
-}
-
 void hexadecimal_binario() {
   char hexadecimal[100];
   char binario[400] = "";
@@ -532,6 +612,7 @@ void hexadecimal_binario() {
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(13); // magenta
   printf("HEXADECIMAL ");
   setCorTexto(15); // branco
@@ -539,6 +620,7 @@ void hexadecimal_binario() {
   setCorTexto(14); // amarelo
   printf("BINARIO\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero hexadecimal: ");
@@ -550,23 +632,72 @@ void hexadecimal_binario() {
     return;
   }
 
-  // Tabela de conversão de hexadecimal para binário
-  char *hexToBin[] = {"0000", "0001", "0010", "0011", "0100", "0101",
-                      "0110", "0111", "1000", "1001", "1010", "1011",
-                      "1100", "1101", "1110", "1111"};
-
   int length = strlen(hexadecimal);
   for (int j = 0; j < length; j++) {
     char hexDigit = hexadecimal[j];
-    int decimal;
+    char binDigit[5] =
+        ""; // Cada dígito hexadecimal é convertido em 4 dígitos binários
 
-    if (hexDigit >= '0' && hexDigit <= '9') {
-      decimal = hexDigit - '0';
-    } else {
-      decimal = hexDigit - 'A' + 10;
+    // Converte caractere hexadecimal para valor binário de 4 bits
+    switch (hexDigit) {
+    case '0':
+      strcpy(binDigit, "0000");
+      break;
+    case '1':
+      strcpy(binDigit, "0001");
+      break;
+    case '2':
+      strcpy(binDigit, "0010");
+      break;
+    case '3':
+      strcpy(binDigit, "0011");
+      break;
+    case '4':
+      strcpy(binDigit, "0100");
+      break;
+    case '5':
+      strcpy(binDigit, "0101");
+      break;
+    case '6':
+      strcpy(binDigit, "0110");
+      break;
+    case '7':
+      strcpy(binDigit, "0111");
+      break;
+    case '8':
+      strcpy(binDigit, "1000");
+      break;
+    case '9':
+      strcpy(binDigit, "1001");
+      break;
+    case 'A':
+    case 'a':
+      strcpy(binDigit, "1010");
+      break;
+    case 'B':
+    case 'b':
+      strcpy(binDigit, "1011");
+      break;
+    case 'C':
+    case 'c':
+      strcpy(binDigit, "1100");
+      break;
+    case 'D':
+    case 'd':
+      strcpy(binDigit, "1101");
+      break;
+    case 'E':
+    case 'e':
+      strcpy(binDigit, "1110");
+      break;
+    case 'F':
+    case 'f':
+      strcpy(binDigit, "1111");
+      break;
     }
 
-    strcat(binario, hexToBin[decimal]);
+    // Concatena o valor binário correspondente ao dígito hexadecimal
+    strcat(binario, binDigit);
   }
 
   printf("O numero hexadecimal %s em binario eh %s.\n", hexadecimal, binario);
@@ -576,6 +707,7 @@ void hexadecimal_binario() {
 void hexadecimal_octal() {
   char hexadecimal[100];
   char octal[100] = "";
+  int i, j = 0;
 
   system("cls");
 
@@ -598,43 +730,47 @@ void hexadecimal_octal() {
     return;
   }
 
-  // Tabela de conversão de hexadecimal para binário
-  char *hexToBin[] = {"0000", "0001", "0010", "0011", "0100", "0101",
-                      "0110", "0111", "1000", "1001", "1010", "1011",
-                      "1100", "1101", "1110", "1111"};
-
-  // Convertendo hexadecimal para octal
   int length = strlen(hexadecimal);
-  for (int i = 0; i < length; i++) {
-    char hexDigit = hexadecimal[i];
-    int decimal;
 
-    if (hexDigit >= '0' && hexDigit <= '9') {
-      decimal = hexDigit - '0';
-    } else if (hexDigit >= 'A' && hexDigit <= 'F') {
-      decimal = hexDigit - 'A' + 10;
-    } else {
-      decimal = hexDigit - 'a' + 10;
+  // Loop reverso para pegar cada dígito hexadecimal
+  for (i = length - 1; i >= 0; i--) {
+    int decimal = 0;
+
+    // Convertendo dígito hexadecimal para decimal
+    if (hexadecimal[i] >= '0' && hexadecimal[i] <= '9') {
+      decimal = hexadecimal[i] - '0';
+    } else if (hexadecimal[i] >= 'A' && hexadecimal[i] <= 'F') {
+      decimal = hexadecimal[i] - 'A' + 10;
+    } else if (hexadecimal[i] >= 'a' && hexadecimal[i] <= 'f') {
+      decimal = hexadecimal[i] - 'a' + 10;
     }
 
-    strcat(octal, hexToBin[decimal]);
-  }
+    int octalDigit[3] = {0};
+    int index = 2;
 
-  printf("O numero hexadecimal %s em decimal eh ", hexadecimal);
-  // Convertendo binário para octal
-  length = strlen(octal);
-  int octalDigit = 0;
-  for (int i = 0; i < length; i += 3) {
-    octalDigit = 0;
-    for (int j = 0; j < 3; j++) {
-      if (i + j < length) {
-        octalDigit = octalDigit * 2 + (octal[i + j] - '0');
-      }
+    while (decimal > 0) {
+      octalDigit[index] = decimal % 8;
+      decimal /= 8;
+      index--;
     }
-    printf("%d", octalDigit);
+
+    // Adicionando dígitos octais ao resultado
+    for (int k = 0; k < 3; k++) {
+      octal[j++] = octalDigit[k] + '0';
+    }
   }
 
-  printf(".\n");
+  // Removendo zeros à esquerda desnecessários
+  int start = 0;
+  while (octal[start] == '0' && start < j - 1) {
+    start++;
+  }
+
+  printf("O numero hexadecimal %s em octal eh: ", hexadecimal);
+  for (int k = start; k < j; k++) {
+    printf("%c", octal[k]);
+  }
+  printf("\n");
   getch();
 }
 
@@ -644,6 +780,7 @@ void hexadecimal_decimal() {
 
   system("cls");
 
+  // Cor do Texto de Título
   setCorTexto(13); // magenta
   printf("HEXADECIMAL ");
   setCorTexto(15); // branco
@@ -651,6 +788,7 @@ void hexadecimal_decimal() {
   setCorTexto(12); // azul
   printf("DECIMAL\n\n");
 
+  // Cor do restante do Texto
   setCorTexto(15); // branco
 
   printf("Digite um numero hexadecimal: ");
@@ -662,17 +800,18 @@ void hexadecimal_decimal() {
     return;
   }
 
+  // Converte o número hexadecimal para decimal
   int length = strlen(hexadecimal);
   for (int i = 0; i < length; i++) {
     char hexDigit = hexadecimal[i];
     int digit;
 
+    // Converte caractere hexadecimal para valor decimal
     if (hexDigit >= '0' && hexDigit <= '9') {
       digit = hexDigit - '0';
     } else {
       digit = hexDigit - 'A' + 10;
     }
-
     decimal = decimal * 16 + digit;
   }
 
