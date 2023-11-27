@@ -2,10 +2,12 @@
     Programa de conversão de bases
     Desenvolvido por Joao Victor Fernandes - RA: 231024967
     Introducao a Tecnologia da Informacao - BSI 2023 - 2 Periodo
+    Compilador: gcc (MinGW.org GCC-6.3.0-1) 6.3.0
+    SO: W11
 */
 
 #include <conio.h>
-#include <stdbool.h> // Utilizado para o tipo de dados bool
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -177,7 +179,6 @@ void binario_octal() {
   int length = strlen(binario);
   int zeros_padding = length % 3;
 
-  // Adiciona zeros à esquerda para tornar o número binário múltiplo de 3
   if (zeros_padding > 0) {
     zeros_padding = 3 - zeros_padding;
     length += zeros_padding;
@@ -187,7 +188,6 @@ void binario_octal() {
 
   printf("O numero binario %s em octal eh: ", binario);
 
-  // Converte grupos de 3 dígitos binários para octal
   for (int i = 0; i < length; i += 3) {
     int grupo = 0;
     for (int j = 0; j < 3; j++) {
@@ -226,7 +226,6 @@ void binario_decimal() {
     return;
   }
 
-  // Converte o número binário para decimal
   for (int i = 0; binario[i] != '\0'; i++) {
     decimal = decimal * 2 + (binario[i] - '0');
   }
@@ -262,7 +261,6 @@ void binario_hexadecimal() {
     return;
   }
 
-  // Adiciona zeros à esquerda para tornar o número binário múltiplo de 4
   length = strlen(binario);
   int zeros_padding = length % 4;
   if (zeros_padding > 0) {
@@ -272,7 +270,6 @@ void binario_hexadecimal() {
     memset(binario, '0', zeros_padding);
   }
 
-  // Converte grupos de 4 dígitos binários para hexadecimal
   for (int i = 0; i < length; i += 4) {
     int grupo = 0;
     for (int j = 0; j < 4; j++) {
@@ -317,7 +314,6 @@ void octal_binario() {
     return;
   }
 
-  // Converte cada dígito octal para 3 bits binários
   for (i = 0; octal[i] != '\0'; i++) {
     switch (octal[i]) {
     case '0':
@@ -396,7 +392,6 @@ void octal_decimal() {
     return;
   }
 
-  // Converte o número octal para decimal
   for (i = 0; octal[i] != '\0'; i++) {
     decimal = decimal * 8 + (octal[i] - '0');
   }
@@ -432,7 +427,6 @@ void octal_hexadecimal() {
     return;
   }
 
-  // Convertendo o número octal para hexadecimal diretamente
   for (i = 0; octal[i] != '\0'; i++) {
     int digit = octal[i] - '0';
     j = j * 8 + digit;
@@ -440,7 +434,6 @@ void octal_hexadecimal() {
 
   i = 0;
 
-  // Convertendo o valor j para hexadecimal
   while (j != 0) {
     int remainder = j % 16;
     if (remainder < 10) {
@@ -451,10 +444,8 @@ void octal_hexadecimal() {
     j /= 16;
   }
 
-  // Adicionando o caractere nulo ao final da string hexadecimal
   hexadecimal[i] = '\0';
 
-  // Revertendo a string hexadecimal para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -497,12 +488,10 @@ void decimal_binario() {
   }
 
   int number = atoi(decimal);
-  // Se o número for zero, o binário também é zero
   if (number == 0) {
     binary[0] = '0';
     binary[1] = '\0';
   } else {
-    // Converte o número decimal para binário
     while (number != 0) {
       binary[i] = (number % 2) + '0';
       number /= 2;
@@ -511,7 +500,6 @@ void decimal_binario() {
     binary[i] = '\0';
   }
 
-  // Reverte a string binária para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -555,12 +543,10 @@ void decimal_octal() {
 
   int number = atoi(decimal);
 
-  // Se o número for zero, o octal também é zero
   if (number == 0) {
     octal[0] = '0';
     octal[1] = '\0';
   } else {
-    // Converte o número decimal para octal
     while (number != 0) {
       octal[i] = (number % 8) + '0';
       number /= 8;
@@ -569,7 +555,6 @@ void decimal_octal() {
     octal[i] = '\0';
   }
 
-  // Reverte a string octal para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -611,14 +596,12 @@ void decimal_hexadecimal() {
     return;
   }
 
-  int number = atoi(decimal); // Converte a string decimal para int
+  int number = atoi(decimal);
 
-  // Se o número for zero, o hexadecimal também é zero
   if (number == 0) {
     hexadecimal[0] = '0';
     hexadecimal[1] = '\0';
   } else {
-    // Converte o número decimal para hexadecimal
     while (number != 0) {
       int remainder = number % 16;
       if (remainder < 10) {
@@ -632,7 +615,6 @@ void decimal_hexadecimal() {
     hexadecimal[i] = '\0';
   }
 
-  // Reverte a string hexadecimal para a ordem correta
   int start = 0;
   int end = i - 1;
   while (start < end) {
@@ -677,10 +659,8 @@ void hexadecimal_binario() {
   int length = strlen(hexadecimal);
   for (int j = 0; j < length; j++) {
     char hexDigit = hexadecimal[j];
-    char binDigit[5] =
-        ""; // Cada dígito hexadecimal é convertido em 4 dígitos binários
+    char binDigit[5] = "";
 
-    // Converte caractere hexadecimal para valor binário de 4 bits
     switch (hexDigit) {
     case '0':
       strcpy(binDigit, "0000");
@@ -738,7 +718,6 @@ void hexadecimal_binario() {
       break;
     }
 
-    // Concatena o valor binário correspondente ao dígito hexadecimal
     strcat(binario, binDigit);
   }
 
@@ -750,6 +729,7 @@ void hexadecimal_octal() {
   char hexadecimal[100];
   char octal[100] = "";
   int i, j = 0;
+  int decimal = 0;
 
   system("cls");
 
@@ -759,11 +739,12 @@ void hexadecimal_octal() {
   printf("PARA ");
   setCorTexto(12); // Azul
   printf("OCTAL\n\n");
-
   setCorTexto(15); // Branco
 
   printf("Digite um numero hexadecimal: ");
   scanf("%s", hexadecimal);
+
+  int length = strlen(hexadecimal);
 
   if (!isHexadecimal(hexadecimal)) {
     printf("Erro: O numero digitado nao eh hexadecimal.\n");
@@ -771,49 +752,32 @@ void hexadecimal_octal() {
     return;
   }
 
-  int length = strlen(hexadecimal);
-
-  // Loop reverso para pegar cada dígito hexadecimal
-  for (i = length - 1; i >= 0; i--) {
-    int decimal = 0;
+  for (i = 0; i < length; i++) {
+    int digit = 0;
 
     if (hexadecimal[i] >= '0' && hexadecimal[i] <= '9') {
-      decimal = hexadecimal[i] - '0';
+      digit = hexadecimal[i] - '0';
     } else if (hexadecimal[i] >= 'A' && hexadecimal[i] <= 'F') {
-      decimal = hexadecimal[i] - 'A' + 10;
+      digit = hexadecimal[i] - 'A' + 10;
     } else if (hexadecimal[i] >= 'a' && hexadecimal[i] <= 'f') {
-      decimal = hexadecimal[i] - 'a' + 10;
+      digit = hexadecimal[i] - 'a' + 10;
     }
 
-    int octalDigit[3] = {0};
-    int index = 2;
-
-    while (decimal > 0) {
-      octalDigit[index] = decimal % 8;
-      decimal /= 8;
-      index--;
-    }
-
-    // Adicionando dígitos octais ao resultado
-    for (int k = 0; k < 3; k++) {
-      octal[j++] = octalDigit[k] + '0';
-    }
+    decimal = decimal * 16 + digit;
   }
 
-  // Removendo zeros à esquerda desnecessários
-  int start = 0;
-  while (octal[start] == '0' && start < j - 1) {
-    start++;
+  while (decimal != 0) {
+    octal[j++] = (decimal % 8) + '0';
+    decimal /= 8;
   }
 
-  printf("O numero hexadecimal %s em octal eh: ", hexadecimal);
-  if (start == j) {
-    printf("0"); // Caso especial para hexadecimal "0"
-  } else {
-    for (int k = start; k < j; k++) {
-      printf("%c", octal[k]);
-    }
+  for (int start = 0, end = j - 1; start < end; start++, end--) {
+    char temp = octal[start];
+    octal[start] = octal[end];
+    octal[end] = temp;
   }
+
+  printf("O numero hexadecimal %s em octal eh: %s\n", hexadecimal, octal);
   printf("\n");
   getch();
 }
@@ -844,13 +808,11 @@ void hexadecimal_decimal() {
     return;
   }
 
-  // Converte o número hexadecimal para decimal
   int length = strlen(hexadecimal);
   for (int i = 0; i < length; i++) {
     char hexDigit = hexadecimal[i];
     int digit;
 
-    // Converte caractere hexadecimal para valor decimal
     if (hexDigit >= '0' && hexDigit <= '9') {
       digit = hexDigit - '0';
     } else {
