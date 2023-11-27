@@ -4,6 +4,7 @@
     Introducao a Tecnologia da Informacao - BSI 2023 - 2 Periodo
     Compilador: gcc (MinGW.org GCC-6.3.0-1) 6.3.0
     SO: W11
+    Link do trabalho: https://github.com/fessouza-23/algoritmos-unesp/blob/main/Trabalho%20ITI/conversao_bases.c
 */
 
 #include <conio.h>
