@@ -1,5 +1,5 @@
-# Exercício 1
-## Lista Encadeada
+# Lista Encadeada
+## Exercício 1
 ### Vantagens
  - Maior facilidade de inserir e remover elementos em diferentes posições, seja no meio da lista, começo ou fim
  - Tamanho da lista pode ser alterada
