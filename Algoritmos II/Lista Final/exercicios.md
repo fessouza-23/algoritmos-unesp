@@ -1,4 +1,5 @@
 # Lista Encadeada
+
 ## Exercício 1
 ### Vantagens
  - Maior facilidade de inserir e remover elementos em diferentes posições, seja no meio da lista, começo ou fim
@@ -9,3 +10,5 @@
  - Necessário uma busca sequencial
  - Maior gasto de memória (armazenamento de ponteiros)
  - Maior complexidade de implementação
+
+ ## Exercício 2
