@@ -50,51 +50,81 @@ void incluir_final(no *lista, int info) {
 }
 
 void incluir_ordenado(no *lista, int info){
-    //Criação do nó p
     no p = (no) malloc(sizeof(struct reg));
 	p->info = info;
 
 	if (!*lista) 
 	{
-        //Se a lista for vazia
 		p->ant = NULL;
 		p->prox = NULL;
 		*lista = p;
 	} 
-	else if ((*lista)->info >= info) 
-	{
-        // Se o elemento for menor que o primeiro elemento da lista
-        // Neste caso inserimos no inicio
+	else if ((*lista)->info >= info) {
 		p->ant = NULL;
 		p->prox = *lista;
         if (*lista)
             (*lista)->ant=p;
 		*lista = p;
 	}
-	else
-	{
-        // Elemento sera incluido no meio ou final da lista
-        // Obter q = 1o elemento maior ou igual a info (se nao houver, volta para o inicio)
-        //           ou ultimo nó (se todos os elementos forem menor que info)
+	else {
         no q = *lista;
 		while(q->prox != NULL && q->info < info)
 			q = q->prox;
 
-		if(q->info >= info) //Se q->info for maior ou igual a info
-		{
-            //Insere no meio de q->ant e q
+		if(q->info >= info) {
 			p->prox = q;
 			p->ant = q->ant;
 			q->ant->prox = p;
 			q->ant = p; 	
 		} 
-		else //Caso contrário, insere no final
-		{
+		else {
 			p->ant = q;
 			p->prox = NULL;
 			q->prox = p;
 		}
 	}
+}
+
+void remover_comeco(no *lista){
+    no p = *lista;
+    *lista = p->prox;
+    free(p);
+    (*lista)->ant = NULL;
+}
+
+void remover_fim(no *lista) {
+    no p = *lista;
+    while(p->prox) {
+        p = p->prox;
+    }
+    p->ant->prox = NULL;
+    free(p);
+}
+
+void buscar_elemento(no lista, int x) {
+    no p = lista;
+    int i = 0, achou = 0;
+    while(p) {
+        if(p->info == x) {
+            printf("Elemento %d achado: i = %d\n", x, i);
+            achou = 1;
+            break;
+        }
+        i++;
+        p = p->prox;
+    }
+    if(!achou) {
+        printf("Elemento nao encontrado!\n");
+    }
+}
+
+void apagar_lista(no *lista){
+    no p = (*lista)->prox;
+    while(p){
+        free(p->ant);
+        p = p->prox;
+    }
+    *lista = NULL;
 }
 
 int main() {
@@ -104,8 +134,15 @@ int main() {
     incluir_comeco(&lista, 80);
     incluir_comeco(&lista, 70);
     incluir_comeco(&lista, 50);
+    incluir_final(&lista, 90);
     mostrar_lista(lista);
     incluir_ordenado(&lista, 60);
     mostrar_lista(lista);
-
+    remover_comeco(&lista);
+    mostrar_lista(lista);
+    remover_fim(&lista);
+    mostrar_lista(lista);
+    buscar_elemento(lista, 60);
+    apagar_lista(&lista);
+    mostrar_lista(lista);
 }
